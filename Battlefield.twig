@@ -16,7 +16,7 @@
 				{% endif %}
 				<br />
 
-				{{ platoon.name }}<br />
+				Platoon #{{ loop.index }}<br />
 				{% if platoon.leader is not null %}
 					[color=#ff0000]  {{ platoon.leader.present().rankName }}   [/color]
 				{% else %}
