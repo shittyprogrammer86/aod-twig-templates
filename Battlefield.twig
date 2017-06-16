@@ -13,9 +13,13 @@
 [/size]
 
 [size=3][color=#40E0D0]General Sergeants[/color]
+{% if division.generalSergeants %}
 	{% for sergeant in division.generalSergeants %}
 		[profile={{ sergeant.clan_id }}][color={{ sergeant.rank_color }}]{{ sergeant.rankName }}[/color][/profile]
 	{% endfor %}
+{% else %}
+	No general sergeants assigned
+{% endif %}
 [/size]
 
 
