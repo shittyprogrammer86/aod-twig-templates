@@ -7,9 +7,9 @@
 [size=5][color=#00FF00][b][i][u]Division Leadership[/u][/i][/b][/color][/size]
 
 [size=4]
-	{% for leader in division.leaders %}
-		[profile={{ leader.rank_id }}][color={{ leader.rank.color }}]{{ leader.rankName }}[/color][/profile] - {{ leader.position.name }}
-	{% endfor %}
+{% for leader in division.leaders %}
+	[profile={{ leader.rank_id }}][color={{ leader.rank.color }}]{{ leader.rankName }}[/color][/profile] - {{ leader.position.name }}
+{% endfor %}
 [/size]
 
 [size=3][color=#40E0D0]General Sergeants[/color]
