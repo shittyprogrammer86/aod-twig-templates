@@ -1,4 +1,20 @@
-[SIZE=3] {{ division.name }} [/SIZE]
+[table='align:center,width: 800'][tr][td][center][img]http://i.imgur.com/Xb2X4je.png[/img]
+
+[size=5][color=#00FF00][b][i][u]Division Leadership[/u][/i][/b][/color][/size]
+
+{% for leader in division.leaders %}
+	[size=4][profile={{ leader.rank_id }}][color={{ leader.rank.color }}]{{ leader.rankName }}[/color][/profile][/size]
+{% endfor %}
+
+
+[size=3][color=#40E0D0]General Sergeants[/color]
+{% for sergeant in division.generalSergeants %}
+	[profile={{ sergeant.clan_id }}][color={{ sergeant.rank_color }}]{{ sergeant.rankName }}[/color][/profile]
+{% endfor %}
+
+[/size][/center][/td][/tr][/table]
+
+
 
 [table="width: 500, align: center"]
 	[tr]
