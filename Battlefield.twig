@@ -1,18 +1,29 @@
-[table='align:center,width: 800'][tr][td][center][img]http://i.imgur.com/Xb2X4je.png[/img]
+[table='align:center,width: 800'][tr][td]
+[center]
+
+{# battlefield header #}
+[img]http://i.imgur.com/Xb2X4je.png[/img]
 
 [size=5][color=#00FF00][b][i][u]Division Leadership[/u][/i][/b][/color][/size]
 
-{% for leader in division.leaders %}
-	[size=4][profile={{ leader.rank_id }}][color={{ leader.rank.color }}]{{ leader.rankName }}[/color][/profile] - {{ leader.position.name }}[/size]
-{% endfor %}
-
+[size=4]
+	{% for leader in division.leaders %}
+		[profile={{ leader.rank_id }}][color={{ leader.rank.color }}]{{ leader.rankName }}[/color][/profile] - {{ leader.position.name }}
+	{% endfor %}
+[/size]
 
 [size=3][color=#40E0D0]General Sergeants[/color]
 {% for sergeant in division.generalSergeants %}
 	[profile={{ sergeant.clan_id }}][color={{ sergeant.rank_color }}]{{ sergeant.rankName }}[/color][/profile]
 {% endfor %}
+[/size]
 
-[/size][/center][/td][/tr][/table]
+
+[/center]
+
+[/td][/tr][/table]
+
+{# end division leadership section #}
 
 
 
