@@ -3,7 +3,7 @@
 [size=5][color=#00FF00][b][i][u]Division Leadership[/u][/i][/b][/color][/size]
 
 {% for leader in division.leaders %}
-	[size=4][profile={{ leader.rank_id }}][color={{ leader.rank.color }}]{{ leader.rankName }}[/color][/profile][/size]
+	[size=4][profile={{ leader.rank_id }}][color={{ leader.rank.color }}]{{ leader.rankName }}[/color][/profile] - {{ leader.position.name }}[/size]
 {% endfor %}
 
 
