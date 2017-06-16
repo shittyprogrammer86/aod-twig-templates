@@ -10,7 +10,7 @@
 [size=4]
 {# iterate leaders #}
 {% for leader in division.leaders %}
-	[profile={{ leader.rank_id }}][color={{ leader.rank.color }}]{{ leader.rankName }}[/color][/profile] - {{ leader.position.name }}
+	[profile={{ leader.clan_id }}][color={{ leader.rank.color }}]{{ leader.rankName }}[/color][/profile] - {{ leader.position.name }}
 {% endfor %}
 [/size]
 
