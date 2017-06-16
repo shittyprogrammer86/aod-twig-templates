@@ -40,7 +40,7 @@
 
 				{# and this is a comment #}
 
-				{% if platoon.logo is not null %}
+				{% if platoon.logo %}
 					[center][img]{{ platoon.logo }}[/img][/center]
 				{% else %}
 					No logo
@@ -48,7 +48,7 @@
 				<br />
 
 				Platoon #{{ loop.index }}<br />
-				{% if platoon.leader is not null %}
+				{% if platoon.leader %}
 					[color=#ff0000]  {{ platoon.leader.present().rankName }}   [/color]
 				{% else %}
 					[color=orange]LEADER TBA[/color]
