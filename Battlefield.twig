@@ -29,42 +29,32 @@
 
 {# end division leadership section #}
 
+{# iterate platoons #}
+[table="width: 500, align: center"][tr]
+{% for platoon in division.platoons %}
+[td]
+	{% if platoon.logo %}
+		[center][img]{{ platoon.logo }}[/img][/center]
+	{% else %}
+		No logo
+	{% endif %}
+	<br />
+	
+	Platoon #{{ loop.index }}<br />
+	{% if platoon.leader %}
+		[color=#ff0000]  {{ platoon.leader.present().rankName }}   [/color]
+	{% else %}
+		[color=orange]LEADER TBA[/color]
+	{% endif %}
 
-
-[table="width: 500, align: center"]
-	[tr]
-
-   		 {% for platoon in division.platoons %}
-
-			[td]
-
-				{# and this is a comment #}
-
-				{% if platoon.logo %}
-					[center][img]{{ platoon.logo }}[/img][/center]
-				{% else %}
-					No logo
-				{% endif %}
-				<br />
-
-				Platoon #{{ loop.index }}<br />
-				{% if platoon.leader %}
-					[color=#ff0000]  {{ platoon.leader.present().rankName }}   [/color]
-				{% else %}
-					[color=orange]LEADER TBA[/color]
-				{% endif %}
-
-				{% for squad in platoon.squads %}
-					Squad #{{ loop.index }}<br />
-		
-						{% for member in squad.members %}
-							{{ member.present().rankName }}<br />
-						{% endfor %}
-
-				{% endfor %}
-
-			[/td]	
-
-       		 {% endfor %}
-	[/tr]
-[/table]
+	{# iterate squads #}
+	{% for squad in platoon.squads %}
+		Squad #{{ loop.index }}<br />
+		{# iterate squad members #}
+		{% for member in squad.members %}
+			{{ member.present().rankName }}<br />
+		{% endfor %}
+	{% endfor %}
+[/td]	
+{% endfor %}
+[/tr][/table]
