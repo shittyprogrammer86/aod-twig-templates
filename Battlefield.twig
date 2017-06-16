@@ -6,13 +6,16 @@
 
 [size=5][color=#00FF00][b][i][u]Division Leadership[/u][/i][/b][/color][/size]
 
+
 [size=4]
+{# iterate leaders #}
 {% for leader in division.leaders %}
 	[profile={{ leader.rank_id }}][color={{ leader.rank.color }}]{{ leader.rankName }}[/color][/profile] - {{ leader.position.name }}
 {% endfor %}
 [/size]
 
 [size=3][color=#40E0D0]General Sergeants[/color]
+{# iterate general sergeants #}
 {% if division.generalSergeants %}
 	{% for sergeant in division.generalSergeants %}
 		[profile={{ sergeant.clan_id }}][color={{ sergeant.rank_color }}]{{ sergeant.rankName }}[/color][/profile]
@@ -27,7 +30,6 @@
 
 [/td][/tr][/table]
 
-{# end division leadership section #}
 
 {# iterate platoons #}
 [table="width: 500, align: center"][tr]
