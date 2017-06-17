@@ -3,7 +3,54 @@
 
 
 [SIZE=5][COLOR=#FF0000][B][U]Division Leadership[/U][/B][/COLOR][/SIZE]
-[SIZE=4] {{ division.leaders.present().rankName}} [/SIZE]
+[SIZE=4]
+{% for member in division.leaders %}
+	[profile={{ member.clan_id }}][color={{ member.rank.color }}]{{ member.rankName }}[/color][/profile] - {{ leader.position.name }}
+{% else %}
+	TBA
+{% endfor %}
 
+<br /><br />
 
+[color=#FF0000]General Sergeants[/color]
+{% if division.generalSergeants %}
+	{% for sergeant in division.generalSergeants %}
+		[profile={{ sergeant.clan_id }}][color={{ sergeant.rank_color }}]{{ sergeant.rankName }}[/color][/profile]
+	{% endfor %}
+{% else %}
+	No general Sergeants assigned
+{% endif %}
+
+[/SIZE]
 [/CENTER]
+
+[table=align:center]
+{% for platoon in division.platoons %}
+[tr]
+[td]
+		{% if platoon.logo %}
+			[center][img]{{ platoon.logo }}[/img][/center]
+		{% endif %}
+		<br />
+
+		[center][size=4][color=00FFFF]{{ platoon.name }}[/color][/size]
+		{% if platoon.leader %}
+			[profile={{ platoon.leader.clan_id }}][color=white]{{platoon.leader.present().rankName }}[/color][/profile]
+		{% else %}
+			[color=orange] LEADER TBA [/color]
+		{% endif %}
+[/td][/tr]
+[tr]
+		{% for squad in platoon.squads %}
+[td]
+		Squad #{{ loop.index }}<br />
+		[LIST]
+		  {% for member in squad.members %}
+			  [*][profile={{ member.clan_id }}]{{ member.present().rankName }} [url={{member.handles[0].url}}][color=00FFFF]Steam[/color][/url]<br />
+		  {% endfor %}
+		[/LIST]
+[/td]	
+    {% endfor %}
+[/tr]
+{% endfor %}
+[/table]
