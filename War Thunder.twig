@@ -15,7 +15,7 @@
 {# Iterate General Sergeants #}
 {% if division.generalSergeants %}
 	{% for sergeant in division.generalSergeants %}
-		[profile={{sergeant.clan_id}}][color={{sergeant.rank.color}}]{{sergeant.present().rankName}}[/color][/profile]<br />
+		[profile={{ sergeant.clan_id }}][color={{ sergeant.rank.color }}]{{ sergeant.present().rankName }}[/color][/profile]<br />
 	{% endfor %}
 {% else %}
 	No general sergeants assigned
@@ -32,25 +32,25 @@
 {% for platoon in division.platoons %}
 [td]
 	{% if platoon.logo %}
-		[center][img]{{platoon.logo}}[/img][/center]
+		[center][img]{{ platoon.logo }}[/img][/center]
 	{% else %}
 		No logo
 	{% endif %}
 	<br />
 
-	Platoon #{{loop.index}}<br />
+	Platoon #{{ loop.index }}<br />
 	{% if platoon.leader %}
-		[color=#00FF00]{{platoon.leader.present().rankName}}[/color]
+		[color=#00FF00]{{ platoon.leader.present().rankName }}[/color]
 	{% else %}
 		[color=#00FF00]TBA[/color]
 	{% endif %}
 
 	{# iterate squads #}
 	{% for squad in platoon.squads %}
-		Squad #{{loop.index}}<br />
+		Squad #{{ loop.index }}<br />
 		{# iterate squad members #}
 		{% for member in squad.members %}
-			[profile={{member.clan_id}}]{{member.present().rankName}}[/profile][url={{member.handles[0].fullUrl}}][color=#00ff00]⟹[/color][/url]<br />
+			[profile={{ member.clan_id }}]{{ member.present().rankName }}[/profile][url={{ member.handles[0].fullUrl }}][color=#00ff00]⟹[/color][/url]<br />
 		{% endfor %}
 	{% endfor %}
 
