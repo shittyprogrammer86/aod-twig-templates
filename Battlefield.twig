@@ -2,22 +2,25 @@
 [center]
 
 {# battlefield header #}
-[img]http://i.imgur.com/Xb2X4je.png[/img]
+[img]http://i.imgur.com/Xb2X4je.png[/img]<br /><br />
 
-[size=5][color=#00FF00][b][i][u]Division Leadership[/u][/i][/b][/color][/size]
+[size=5][color=#00FF00][b][i][u]Division Leadership[/u][/i][/b][/color][/size]<br /><br />
 
 [size=4]
 {# iterate leaders #}
 {% for leader in division.leaders %}
-	[profile={{ leader.clan_id }}][color={{ leader.rank.color }}]{{ leader.rankName }}[/color][/profile] - {{ leader.position.name }}
+	[profile={{ leader.clan_id }}][color={{ leader.rank.color }}]{{ leader.present().rankName }}[/color][/profile] - {{ leader.position.name }}<br />
 {% endfor %}
 [/size]
 
-[size=3][color=#40E0D0]General Sergeants[/color]
+{# give some space between leaders and gen sgts #}
+<br /><br />
+
+[size=3][color=#40E0D0]General Sergeants[/color]<br />
 {# iterate general sergeants #}
 {% if division.generalSergeants %}
 	{% for sergeant in division.generalSergeants %}
-		[profile={{ sergeant.clan_id }}][color={{ sergeant.rank_color }}]{{ sergeant.rankName }}[/color][/profile]
+		[profile={{ sergeant.clan_id }}][color={{ sergeant.rank.color }}]{{ sergeant.present().rankName }}[/color][/profile]
 	{% endfor %}
 {% else %}
 	No general sergeants assigned
@@ -26,7 +29,7 @@
 
 [/center]
 
-[/td][/tr][/table]
+[/td][/tr][/table]<br /><br />
 
 
 {# iterate platoons #}
