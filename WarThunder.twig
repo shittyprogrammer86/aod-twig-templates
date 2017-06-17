@@ -45,7 +45,7 @@
     
     [size=3][color=#40E0D0]{{ loop.index }}Wing Commander[/color]
 	{% if platoon.leader %}
-			[profile={{ platoon.leader.clan_id }}][color=#00FF00]{{ platoon.leader.present().rankName }}[/color][/profile][url={{ platoon.leader.handles[0].url }}{{ platoon.leader.handles[0].value }}][color=#00ff00]⟹[/color][/url]
+			[profile={{ platoon.leader.clan_id }}][color=#00FF00]{{ platoon.leader.present().rankName }}[/color][/profile] [url={{ platoon.leader.handles[0].fullUrl }}][color=#00ff00]⟹[/color][/url]
     {% else %}
 		[color=#00FF00]TBA[/color]
 	{% endif %}
@@ -82,3 +82,19 @@
 
 {% endfor %}
 [/tr][/table]
+
+[table='align:center,width: 800'][tr][td]
+[center][size=3][color=#40E0D0][b]Part Time Members[/b][/color][/size][/center][/td][/tr][/table]
+{% set max_partTime = 20 %}
+
+[table='align:center,width: 800'][tr][td]
+{% for member in division.partTimeMembers %}
+	[profile={{ member.clan_id }}]AOD_{{ member.name }}[/profile][url={{ member.handles[0].url }}{{ member.handles[0].pivot.value }}][color=#00ff00]⟹[/color][/url]
+
+	{% if loop.index is divisible by(max_parTime) %}
+    	[/td]
+    {% endif %}
+{% else %}
+	No Part Time Members
+{% endfor %}
+[/td][/tr][/table]
