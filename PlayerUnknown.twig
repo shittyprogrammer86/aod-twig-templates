@@ -29,9 +29,8 @@
 [tr]
 [td]
 		{% if platoon.logo %}
-			[center][img]{{ platoon.logo }}[/img][/center]
+			[img]{{ platoon.logo }}[/img][/center]
 		{% endif %}
-		<br />
 
 		[center][size=4][color=00FFFF]{{ platoon.name }}[/color][/size]
 		{% if platoon.leader %}
@@ -39,18 +38,7 @@
 		{% else %}
 			[color=orange] LEADER TBA [/color]
 		{% endif %}
-[/td][/tr]
-[tr]
-		{% for squad in platoon.squads %}
-[td]
-		Squad #{{ loop.index }}<br />
-		[LIST]
-		  {% for member in squad.members %}
-			  [*][profile={{ member.clan_id }}]{{ member.present().rankName }} [url={{member.handles[0].url}}][color=00FFFF]Steam[/color][/url]<br />
-		  {% endfor %}
-		[/LIST]
-[/td]	
-    {% endfor %}
+[/td]
 [/tr]
 {% endfor %}
 [/table]
