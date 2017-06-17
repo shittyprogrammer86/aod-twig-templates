@@ -37,21 +37,32 @@
 		No logo
 	{% endif %}
 	
-
-	Platoon #{{ loop.index }}
+    {% if platoon.name %}
+    	[size=5][color=ffff00]{{ platoon.name }}[/color][/size]
+    {% else %}
+    	[color=ffff00]Untitled[/color]
+    {% endif %}
+    
+    [size=3][color=#40E0D0]{{ loop.index }} Wing Commander[/color]
 	{% if platoon.leader %}
-		[color=#00FF00]{{ platoon.leader.present().rankName }}[/color]
+		[color=#00FF00]{{ platoon.leader.present().rankName }}[/color][url={{ member.handles[0].fullUrl }}][color=#00ff00]⟹[/color][/url]
 	{% else %}
 		[color=#00FF00]TBA[/color]
 	{% endif %}
+    [/size]
 
 	{# iterate squads #}
 	{% for squad in platoon.squads %}
-		Squad #{{ loop.index }}
+		{% if squad.name %}
+        	[size=4][color=ffff00]{{ squad.name }}[/color][/size]
+        {% else %}
+        	[size=4][color=ffff00]Untitled[/color][/size]
+        {% endif %}
 		{# iterate squad members #}
 		{% for member in squad.members %}
-			[profile={{ member.clan_id }}]{{ member.present().rankName }}[/profile][url={{ member.handles[0].fullUrl }}][color=#00ff00]⟹[/color][/url]<br />
+			[profile={{ member.clan_id }}]{{ member.present().rankName }}[/profile][url={{ member.handles[0].fullUrl }}][color=#00ff00]⟹[/color][/url]
 		{% endfor %}
+        
 	{% endfor %}
 
 	{% if loop.index is divisible by(max_platoons) %}
@@ -62,4 +73,3 @@
 
 {% endfor %}
 [/tr][/table]
-
