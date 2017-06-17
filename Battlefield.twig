@@ -55,7 +55,7 @@
 		Squad #{{ loop.index }}<br />
 		{# iterate squad members #}
 		{% for member in squad.members %}
-			{{ member.present().rankName }}<br />
+			[profile={{ member.clan_id }}]{{ member.present().rankName }}[/profile]<br />
 		{% endfor %}
 	{% endfor %}
 [/td]	
