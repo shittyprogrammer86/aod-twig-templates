@@ -2,21 +2,21 @@
 [center]
 
 {# battlefield header #}
-[img]http://i.imgur.com/Xb2X4je.png[/img]<br /><br />
+[img]http://i.imgur.com/Xb2X4je.png[/img]
 
-[size=5][color=#00FF00][b][i][u]Division Leadership[/u][/i][/b][/color][/size]<br /><br />
+[size=5][color=#00FF00][b][i][u]Division Leadership[/u][/i][/b][/color][/size]
 
 [size=4]
 {# iterate leaders #}
 {% for leader in division.leaders %}
-	[profile={{ leader.clan_id }}][color={{ leader.rank.color }}]{{ leader.present().rankName }}[/color][/profile] - {{ leader.position.name }}<br />
+	[profile={{ leader.clan_id }}][color={{ leader.rank.color }}]{{ leader.present().rankName }}[/color][/profile] - {{ leader.position.name }}
 {% endfor %}
 [/size]
 
 {# give some space between leaders and gen sgts #}
-<br /><br />
 
-[size=3][color=#40E0D0]General Sergeants[/color]<br />
+
+[size=3][color=#40E0D0]General Sergeants[/color]
 {# iterate general sergeants #}
 {% if division.generalSergeants %}
 	{% for sergeant in division.generalSergeants %}
@@ -29,7 +29,7 @@
 
 [/center]
 
-[/td][/tr][/table]<br /><br />
+[/td][/tr][/table]
 
 
 {# iterate platoons #}
@@ -41,9 +41,9 @@
 	{% else %}
 		No logo
 	{% endif %}
-	<br />
 	
-	Platoon #{{ loop.index }}<br />
+	
+	Platoon #{{ loop.index }}
 	{% if platoon.leader %}
 		[color=#ff0000]  {{ platoon.leader.present().rankName }}   [/color]
 	{% else %}
@@ -52,10 +52,10 @@
 
 	{# iterate squads #}
 	{% for squad in platoon.squads %}
-		Squad #{{ loop.index }}<br />
+		Squad #{{ loop.index }}
 		{# iterate squad members #}
 		{% for member in squad.members %}
-			[profile={{ member.clan_id }}]{{ member.present().rankName }}[/profile]<br />
+			[profile={{ member.clan_id }}]{{ member.present().rankName }}[/profile]
 		{% endfor %}
 	{% endfor %}
 [/td]	
