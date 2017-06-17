@@ -61,7 +61,7 @@
         
         [size=3][color=#40E0D0]{{ loop.index}} Squadron Commander[/color]
         {% if squad.leader %}
-        		[profile={{ leader.clan_id }}][color=#FFA500]{{ squad.leader.present().rankName }}[/profile][/color][url={{ member.handles[0].fullUrl }}][color=#00ff00]⟹[/color][/url]
+        		[profile={{ squad.leader.clan_id }}][color=#FFA500]{{ squad.leader.present().rankName }}[/profile][/color][url={{ member.handles[0].fullUrl }}][color=#00ff00]⟹[/color][/url]
         {% else %}
         	[color=#FFA500]TBA[/color]
         {% endif %}
