@@ -1,1 +1,29 @@
+[table='align:center,width: 800'][tr][td][center][img]http://i.imgur.com/QZW3kW9.png[/img]<br /><br />
 
+[size=5][color=#FF0000][b][i][u]Division Membership[/u][/i][/b][/color][/size]
+[color=#800080]
+{# However this part is coded lol #}
+[/color]<br /><br />
+
+[size=5][color=#FF0000][b][i][u]Division Leaders[/u][/i][/b][/color][/size]<br />
+
+[size=4]
+{# iterate leaders #}
+{% for leader in division.leaders %}
+	[profile={{leader.clan_id}}][color={{leader.rank.color}}]{{leader.present().rankName}}[/color][/profile] - {{leader.position.name}}<br />
+[/size]<br /><br />
+
+[size=3][color=#40E0D0]General Sergeants[/color]<br />
+{# Iterate General Sergeants #}
+{% if division.generalSergeants %}
+	{for sergeant in division.generalSergeants %}
+		[profile={{sergeant.clan_id}}][color={{sergeant.rank.color}}]{{sergeant.present().rankName}}[/color][/profile]<br />
+	{% endfor %}
+{% else %}
+	No general sergeants assigned
+{% endif %}
+[/size]
+
+[/center]
+
+[/td][/tr][/table]<br /> <br />
