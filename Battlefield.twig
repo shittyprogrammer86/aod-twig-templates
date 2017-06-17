@@ -13,36 +13,30 @@
 {% endfor %}
 [/size]
 
-{# give some space between leaders and gen sgts #}
-
-
 [size=3][color=#40E0D0]General Sergeants[/color]
 {# iterate general sergeants #}
-{% if division.generalSergeants %}
-	{% for sergeant in division.generalSergeants %}
-		[profile={{ sergeant.clan_id }}][color={{ sergeant.rank.color }}]{{ sergeant.present().rankName }}[/color][/profile]
-	{% endfor %}
+{% for sergeant in division.generalSergeants %}
+	[profile={{ sergeant.clan_id }}][color={{ sergeant.rank.color }}]{{ sergeant.present().rankName }}[/color][/profile]
 {% else %}
 	No general sergeants assigned
-{% endif %}
+{% endfor %}
 [/size]
 
 [/center]
 
 [/td][/tr][/table]
 
-
 {# iterate platoons #}
 [table="width: 500, align: center"][tr]
 {% for platoon in division.platoons %}
-[td]
+	[td]
 	{% if platoon.logo %}
 		[center][img]{{ platoon.logo }}[/img][/center]
 	{% else %}
 		No logo
 	{% endif %}
-	
-	
+
+
 	Platoon #{{ loop.index }}
 	{% if platoon.leader %}
 		[color=#ff0000]  {{ platoon.leader.present().rankName }}   [/color]
@@ -58,6 +52,6 @@
 			[profile={{ member.clan_id }}]{{ member.present().rankName }}[/profile]
 		{% endfor %}
 	{% endfor %}
-[/td]	
+	[/td]
 {% endfor %}
 [/tr][/table]
