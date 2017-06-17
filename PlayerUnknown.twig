@@ -32,9 +32,9 @@
 			[img]{{ platoon.logo }}[/img][/center]
 		{% endif %}
 
-		[center][size=4][color=00FFFF]{{ platoon.name }}[/color][/size]
+		[center][size=4][color=00FFFF]{{ platoon.name }}[/color][/size][/center]
 		{% if platoon.leader %}
-			[profile={{ platoon.leader.clan_id }}][color=white]{{platoon.leader.present().rankName }}[/color][/profile]
+			[center][profile={{ platoon.leader.clan_id }}][color=white]{{platoon.leader.present().rankName }}[/color][/profile][/center]
 		{% else %}
 			[color=orange] LEADER TBA [/color]
 		{% endif %}
