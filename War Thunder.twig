@@ -5,7 +5,7 @@
 [size=4]
 {# iterate leaders #}
 {% for leader in division.leaders %}
-	[profile={{ member.clan_id }}][color={{ member.rank.color }}]{{ member.present().rankName }}[/color][/profile] - {{ leader.position.name }}
+	[profile={{ leader.clan_id }}][color={{ leader.rank.color }}]{{ leader.present().rankName }}[/color][/profile] - {{ leader.position.name }}
 {% else %}
 	TBA
 {% endfor %}
@@ -34,7 +34,7 @@
 	{% if platoon.logo %}
 		[center][img]{{ platoon.logo }}[/img][/center]
 	{% else %}
-		No logo
+
 	{% endif %}
 	
     {% if platoon.name %}
@@ -43,10 +43,10 @@
     	[color=ffff00]Untitled[/color]
     {% endif %}
     
-    [size=3][color=#40E0D0]{{ loop.index }} Wing Commander[/color]
+    [size=3][color=#40E0D0]{{ loop.index }}Wing Commander[/color]
 	{% if platoon.leader %}
-		[color=#00FF00]{{ platoon.leader.present().rankName }}[/color][url={{ member.handles[0].fullUrl }}][color=#00ff00]⟹[/color][/url]
-	{% else %}
+			[profile={{ platoon.leader.clan_id }}][color=#00FF00]{{ platoon.leader.present().rankName }}[/color][/profile][url={{ platoon.leader.handles[0].url }}{{ platoon.leader.handles[0].value }}][color=#00ff00]⟹[/color][/url]
+    {% else %}
 		[color=#00FF00]TBA[/color]
 	{% endif %}
     [/size]
@@ -58,9 +58,18 @@
         {% else %}
         	[size=4][color=ffff00]Untitled[/color][/size]
         {% endif %}
+        
+        [size=3][color=#40E0D0]{{ loop.index}} Squadron Commander[/color]
+        {% if squad.leader %}
+        		[profile={{ leader.clan_id }}][color=#FFA500]{{ squad.leader.present().rankName }}[/profile][/color][url={{ member.handles[0].fullUrl }}][color=#00ff00]⟹[/color][/url]
+        {% else %}
+        	[color=#FFA500]TBA[/color]
+        {% endif %}
+        [/size]
+            
 		{# iterate squad members #}
 		{% for member in squad.members %}
-			[profile={{ member.clan_id }}]{{ member.present().rankName }}[/profile][url={{ member.handles[0].fullUrl }}][color=#00ff00]⟹[/color][/url]
+			[profile={{ member.clan_id }}]{{ member.present().rankName }}[/profile][url={{ member.handles[0].url }}{{ member.handles[0].pivot.value }}][color=#00ff00]⟹[/color][/url]
 		{% endfor %}
         
 	{% endfor %}
