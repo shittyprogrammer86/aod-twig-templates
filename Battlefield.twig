@@ -37,10 +37,10 @@
 		[td="width:33%"]
 	{% endif %}
 	
-	[color=red][size=5]Platoon #{{ loop.index }}[/size][/color]
+	[color=red][size=5]{{ division.locality.platoon }} #{{ loop.index }}[/size][/color]
 	[size=3][i]{{ platoon.name }}[/i]
 	
-	[color=cyan]Platoon Leader[/color]
+	[color=cyan]{{ division.locality.platoonLeader }}[/color]
 	{% if platoon.leader %}
 		[profile={{ platoon.leader.clan_id }}][color=#00FF00]{{ platoon.leader.present().rankName }}[/color][/profile]
 		{%- if platoon.leader.handles[0] -%}
@@ -55,7 +55,7 @@
 	
 	{# iterate squads #}
 	{% for squad in platoon.squads %}
-		[size=3][color=cyan]Squad Leader[/color]
+		[size=3][color=cyan]{{ division.locality.squadLeader }}[/color]
 		{% if squad.leader %}
 			[profile={{ squad.leader.clan_id }}][color=orange]{{ squad.leader.present().rankName }}[/color][/profile]
 			{%- if squad.leader.handles[0] -%}
