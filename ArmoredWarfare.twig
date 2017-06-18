@@ -16,10 +16,10 @@
 {% endfor %}
 
 [/td][/tr][/table]
-{% for platoon in division.platoons %}
+{% for platoon in division.platoons -%}
 	[size=4]{{ division.locality.platoon }} #{{ loop.index }}[/size]
 	[size=3][color=#40E0D0]{{ division.locality['platoon leader'] }}[/color][/size]
-	{% if platoon.leader %}
+	{%- if platoon.leader %}
 		[size=3][color=#00FF00]  {{ platoon.leader.present().rankName }}   [/color][/size]
 	{% else %}
 		[size=3][color=orange]LEADER TBA[/color][/size]
