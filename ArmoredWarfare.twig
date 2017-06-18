@@ -6,7 +6,8 @@
 [size=4]
 {# Division Leadership #}
 {% for leader in division.leaders %}
-	[profile={{ leader.clan_id }}][color={{ leader.rank.color }}]{{ leader.present().rankName }}[/color][/profile] - {{ leader.position.name }}
+	[profile={{ leader.clan_id }}]
+	[color={{ leader.rank.color }}]{{ leader.present().rankName }}[/color][/profile] - {{ leader.position.name }}
 {% endfor %}
 [/size]
 
