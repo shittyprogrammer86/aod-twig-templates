@@ -29,6 +29,23 @@
 
 [table='align:center,width: 500'][tr]
 {% for platoon in division.platoons %}
+	{% if loop.index == 1 %}
+    	[td=colspan:2][center][size=5][color=ffff00]1st Wing[/color][/size]
+        
+        [size=3][color=#40E0D0]1st Wing Commander[/color]
+        [profile=][color=#00FF00]Member 1[/profile][/color][/size][/center][/td][/tr][tr]
+    {% elseif loop.index == 3 %}
+    	[td=colspan:2][center][size=5][color=ffff00]2nd Wing[/color][/size]
+        
+        [size=3][color=#40E0D0]2nd Wing Commander[/color]
+        [profile=][color=#00FF00]Member 2[/color][/profile][/size][/center][/td][/tr][tr]
+    {% elseif loop.index == 5 %}
+    	[td=colspan:2][center][size=5][color=ffff00]3rd Wing[/color][/size]
+        
+        [size=3][color=#40E0D0]3rd Wing Commander[/color]
+        [profile=][color=#00FF00]Member 2[/color][/profile][/size][/center][/td][/tr][tr]
+    {% else %}
+    {% endif %}
 [td]
 	{% if platoon.logo %}
 		[center][img]{{ platoon.logo }}[/img][/center]
@@ -39,15 +56,15 @@
     {% if platoon.name %}
     	[size=5][color=ffff00]{{ platoon.name }}[/color][/size]
     {% else %}
-    	[color=ffff00]Untitled[/color]
+    	[size=5][color=ffff00]Untitled[/color][/size]
     {% endif %}
     
-    [size=3][color=#40E0D0]Wing {{ loop.index }} Commander[/color]
+    [size=3][color=#40E0D0]Group {{ loop.index }} Commander[/color]
 	{% if platoon.leader %}
 			[profile={{ platoon.leader.clan_id }}][color=#00FF00]{{ platoon.leader.present().rankName }}[/color][/profile] [url={{ platoon.leader.handles[0].fullUrl }}][color=#00ff00]⟹[/color][/url]
     {% else %}
 		[color=#00FF00]TBA[/color]
-	{% endif %}
+    {% endif %}
     [/size]
 
 	{# iterate squads #}
