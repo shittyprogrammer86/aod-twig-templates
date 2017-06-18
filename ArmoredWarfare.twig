@@ -16,28 +16,24 @@
 {% endfor %}
 
 [/td][/tr][/table]
-{# Platoon Leader #}
 {% for platoon in division.platoons %}
-	[size=4]Troop #{{ loop.index }}[/size]
-
-	[size=3][color=#40E0D0]Platoon Leader[/color]
+	[size=4]{{ division.locality.platoon }} #{{ loop.index }}[/size]
+	[size=3][color=#40E0D0]{{ division.locality['platoon leader'] }}[/color][/size]
 	{% if platoon.leader %}
-		[color=#00FF00]  {{ platoon.leader.present().rankName }}   [/color]
+		[size=3][color=#00FF00]  {{ platoon.leader.present().rankName }}   [/color][/size]
 	{% else %}
-		[color=orange]LEADER TBA[/color]
+		[size=3][color=orange]LEADER TBA[/color][/size]
 	{% endif %}
-	[/size]
 
 [table='align:center,class:grid,,width:900'][tr][td]
 {# Squad #}
 	{% for squad in platoon.squads %}
-		[size=3][color=#40E0D0]Squad #{{ loop.index }}[/color][/size]
+		[size=3][color=#40E0D0]{{ division.locality.squad }} #{{ loop.index }}[/color][/size]
 		{# iterate squad members #}
 		{% for member in squad.members %}
 			{% if loop.index == 1 %}
 				[size=3][profile={{ member.clan_id }}][color=#FFA500]{{ member.present().rankName }}[/color][/profile][/size]
 
-				{# ooh fancy line break #}
 			{% else %}
 				[profile={{ member.clan_id }}]{{ member.present().rankName }}[/profile]
 			{% endif %}
