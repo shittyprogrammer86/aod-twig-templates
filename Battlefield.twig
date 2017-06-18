@@ -1,4 +1,6 @@
 {# some variables #}
+
+
 {% set TBA = "[color=orange]TBA[/color]" %}
 [table="width: 800, align: center"][tr][td]
 [center]
@@ -41,7 +43,8 @@
 	[color=cyan]Platoon Leader[/color]
 	{% if platoon.leader %}
 		[profile={{ platoon.leader.clan_id }}][color=#00FF00]{{ platoon.leader.present().rankName }}[/color][/profile]
-		{%- if platoon.leader.handles[0] -%} [url={{ platoon.leader.handles[0].fullUrl }}] [BC][/url]
+		{%- if platoon.leader.handles[0] -%}
+			[url={{ platoon.leader.handles[0].fullUrl }}] [BC][/url]
 		{% else %}
 			XX
 		{%- endif -%}
@@ -55,7 +58,8 @@
 		[size=3][color=cyan]Squad Leader[/color]
 		{% if squad.leader %}
 			[profile={{ squad.leader.clan_id }}][color=orange]{{ squad.leader.present().rankName }}[/color][/profile]
-			{%- if squad.leader.handles[0] -%} [url={{ squad.leader.handles[0].fullUrl }}] [BC][/url]
+			{%- if squad.leader.handles[0] -%}
+				[url={{ squad.leader.handles[0].fullUrl }}] [BC][/url]
 			{% else -%}
 				XXX
 			{%- endif -%}
