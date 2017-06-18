@@ -10,7 +10,7 @@
 {% endfor %}
 [/size]
 
-[/center]
+
 [/td][/tr][/table]
 
 {# Platoon Leader #}
@@ -24,11 +24,13 @@
 	{% else %}
 		[color=orange]LEADER TBA[/color]
 	{% endif %}
+[br]
 
 {# Squad #}
 	{% for squad in platoon.squads %}
 		Squad #{{ loop.index }}
 		{# iterate squad members #}
+
 		{% for member in squad.members %}
 			[profile={{ member.clan_id }}]{{ member.present().rankName }}[/profile]
 		{% endfor %}
@@ -37,3 +39,4 @@
 [/td]	
 {% endfor %}
 [/tr][/table]
+[/center]
