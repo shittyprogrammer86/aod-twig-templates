@@ -41,11 +41,11 @@
 	{# iterate squads #}
 	{% for squad in platoon.squads %}
 		Squad Leader
-			{% if squad.leader %}
-				[color=orange]{{ squad.present().rankName }}[/color]
-			{% else %}
-				[color=orange]TBA[/color]
-			{% endif %}
+		{% if squad.leader %}
+			[color=orange]{{ squad.present().rankName }}[/color]
+		{% else %}
+			[color=orange]TBA[/color]
+		{% endif %}
 		{# iterate squad members #}
 		{% for member in squad.members %}
 			[profile={{ member.clan_id }}]{{ member.present().rankName }}[/profile]

@@ -31,48 +31,48 @@
 
 [table='align:center,width: 900'][tr]
 {% for platoon in division.platoons %}
-[td]
+	[td]
 	{% if platoon.logo %}
 		[center][img]{{ platoon.logo }}[/img][/center]
 	{% else %}
 
 	{% endif %}
-	
-    {% if platoon.name %}
-    	[size=5][color=ffff00]{{ platoon.name }}[/color][/size]
-    {% else %}
-    	[color=ffff00]Untitled[/color]
-    {% endif %}
-    
-    [size=3][color=#40E0D0]{{ loop.index }} Wing Commander[/color]
+
+	{% if platoon.name %}
+		[size=5][color=ffff00]{{ platoon.name }}[/color][/size]
+	{% else %}
+		[color=ffff00]Untitled[/color]
+	{% endif %}
+
+	[size=3][color=#40E0D0]{{ loop.index }} Wing Commander[/color]
 	{% if platoon.leader %}
-			[profile={{ platoon.leader.clan_id }}][color=#00FF00]{{ platoon.leader.present().rankName }}[/color][/profile] [url={{ platoon.leader.handles[0].fullUrl }}][color=#00ff00]⟹[/color][/url]
-    {% else %}
+		[profile={{ platoon.leader.clan_id }}][color=#00FF00]{{ platoon.leader.present().rankName }}[/color][/profile] [url={{ platoon.leader.handles[0].fullUrl }}][color=#00ff00]⟹[/color][/url]
+	{% else %}
 		[color=#00FF00]TBA[/color]
 	{% endif %}
-    [/size]
+	[/size]
 
 	{# iterate squads #}
 	{% for squad in platoon.squads %}
 		{% if squad.name %}
-        	[size=4][color=ffff00]{{ squad.name }}[/color][/size]
-        {% else %}
-        	[size=4][color=ffff00]Untitled[/color][/size]
-        {% endif %}
-        
-        [size=3][color=#40E0D0]{{ loop.index}} Squadron Commander[/color]
-        {% if squad.leader %}
-        		[profile={{ squad.leader.clan_id }}][color=#FFA500]{{ squad.leader.present().rankName }}[/profile][/color][url={{ squad.leader.handles[0].fullUrl }}][color=#00ff00]⟹[/color][/url]
-        {% else %}
-        	[color=#FFA500]TBA[/color]
-        {% endif %}
-        [/size]
-            
+			[size=4][color=ffff00]{{ squad.name }}[/color][/size]
+		{% else %}
+			[size=4][color=ffff00]Untitled[/color][/size]
+		{% endif %}
+
+		[size=3][color=#40E0D0]{{ loop.index }} Squadron Commander[/color]
+		{% if squad.leader %}
+			[profile={{ squad.leader.clan_id }}][color=#FFA500]{{ squad.leader.present().rankName }}[/profile][/color][url={{ squad.leader.handles[0].fullUrl }}][color=#00ff00]⟹[/color][/url]
+		{% else %}
+			[color=#FFA500]TBA[/color]
+		{% endif %}
+		[/size]
+
 		{# iterate squad members #}
 		{% for member in squad.members %}
 			[profile={{ member.clan_id }}]{{ member.present().rankName }}[/profile][url={{ member.handles[0].fullurl }}][color=#00ff00]⟹[/color][/url]
 		{% endfor %}
-        
+
 	{% endfor %}
 
 	{% if loop.index is divisible by(max_platoons) %}

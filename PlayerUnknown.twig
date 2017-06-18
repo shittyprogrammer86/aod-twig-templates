@@ -1,7 +1,6 @@
 [CENTER]
 [IMG]http://i.imgur.com/vAUyUy7.png[/IMG]
 
-
 [SIZE=5][COLOR=#FF0000][B][U]Division Leadership[/U][/B][/COLOR][/SIZE]
 [SIZE=4]
 {% for member in division.leaders %}
@@ -26,19 +25,19 @@
 
 [table=align:center]
 {% for platoon in division.platoons %}
-[tr]
-[td]
-		{% if platoon.logo %}
-			[img]{{ platoon.logo }}[/img][/center]
-		{% endif %}
+	[tr]
+	[td]
+	{% if platoon.logo %}
+		[img]{{ platoon.logo }}[/img][/center]
+	{% endif %}
 
-		[center][size=4][color=00FFFF]{{ platoon.name }}[/color][/size][/center]
-		{% if platoon.leader %}
-			[center][profile={{ platoon.leader.clan_id }}][color=white]{{platoon.leader.present().rankName }}[/color][/profile][/center]
-		{% else %}
-			[color=orange] LEADER TBA [/color]
-		{% endif %}
-[/td]
-[/tr]
+	[center][size=4][color=00FFFF]{{ platoon.name }}[/color][/size][/center]
+	{% if platoon.leader %}
+		[center][profile={{ platoon.leader.clan_id }}][color=white]{{ platoon.leader.present().rankName }}[/color][/profile][/center]
+	{% else %}
+		[color=orange] LEADER TBA [/color]
+	{% endif %}
+	[/td]
+	[/tr]
 {% endfor %}
 [/table]

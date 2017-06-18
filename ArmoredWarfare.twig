@@ -10,13 +10,12 @@
 {% endfor %}
 [/size]
 
-
 [/td][/tr][/table]
 
 {# Platoon Leader #}
 [table="width: 500, align: center"][tr]
 {% for platoon in division.platoons %}
-[td]
+	[td]
 
 	Platoon #{{ loop.index }}
 	{% if platoon.leader %}
@@ -24,9 +23,9 @@
 	{% else %}
 		[color=orange]LEADER TBA[/color]
 	{% endif %}
-[br]
+	[br]
 
-{# Squad #}
+	{# Squad #}
 	{% for squad in platoon.squads %}
 		Squad #{{ loop.index }}
 		{# iterate squad members #}
@@ -36,7 +35,7 @@
 		{% endfor %}
 	{% endfor %}
 
-[/td]	
+	[/td]
 {% endfor %}
 [/tr][/table]
 [/center]
