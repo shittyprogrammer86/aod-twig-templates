@@ -3,36 +3,42 @@
 
 [img]https://s30.postimg.org/wy0yrxa69/Group_shot.png[/img]
 
-[size=4]
+[center][size=5][color=#FF0000][b][i][u]Division Leaders[/u][/i][/b][/color][/size][/center]
 {# Division Leadership #}
 {% for leader in division.leaders %}
-	[profile={{ leader.clan_id }}][color={{ leader.rank.color }}]{{ leader.present().rankName }}[/color][/profile] - {{ leader.position.name }}
+	[size=4][profile={{ leader.clan_id }}][color={{ leader.rank.color }}]{{ leader.present().rankName }}[/color][/profile] - {{ leader.position.name }}[/size]
 {% endfor %}
-[/size]
 
+
+[center][size=3][color=#40E0D0]General Sergeants[/color][/size][/center]
+{% for sergeant in division.generalSergeants %}
+	[size=3][profile={{ sergeant.clan_id }}][color={{ sergeant.rank.color }}]{{ sergeant.present().rankName }}[/color][/profile][/size]
+{% else %}
+	[size=3]No general sergeants assigned[/size]
+{% endfor %}
 
 [/td][/tr][/table]
-
-
 {# Platoon Leader #}
 {% for platoon in division.platoons %}
+	[size=4]Troop #{{ loop.index }}[/size]
 
-
-	Platoon #{{ loop.index }}
+	[size=3][color=#40E0D0]Platoon Leader[/color]
 	{% if platoon.leader %}
-		[color=#ff0000]  {{ platoon.leader.present().rankName }}   [/color]
+		[color=#00FF00]  {{ platoon.leader.present().rankName }}   [/color]
 	{% else %}
 		[color=orange]LEADER TBA[/color]
 	{% endif %}
+	[/size]
 
 [table='align:center,class:grid,,width:900'][tr][td]
 {# Squad #}
 	{% for squad in platoon.squads %}
-		Squad #{{ loop.index }}
+		[size=3][color=#40E0D0]Squad #{{ loop.index }}[/color][/size]
 		{# iterate squad members #}
 		{% for member in squad.members %}
-			{% if loop.index == 0 %}
-				[size = 3][profile={{ member.clan_id }}]{{ member.present().rankName }}[/profile][/size]
+			{% if loop.index == 1 %}
+				[size=3][profile={{ member.clan_id }}][color=#FFA500]{{ member.present().rankName }}[/color][/profile][/size]
+
 				{# ooh fancy line break #}
 			{% else %}
 				[profile={{ member.clan_id }}]{{ member.present().rankName }}[/profile]
