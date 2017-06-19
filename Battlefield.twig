@@ -43,8 +43,8 @@
 	[color=cyan]{{ division.locality.platoonLeader }}[/color]
 	{% if platoon.leader %}
 		[profile={{ platoon.leader.clan_id }}][color=#00FF00]{{ platoon.leader.present().rankName }}[/color][/profile]
-		{%- if platoon.leader.handles[0] -%}
-			[url={{ platoon.leader.handles[0].fullUrl }}] [BC][/url]
+		{%- if platoon.leader.handle -%}
+			[url={{ platoon.leader.handle.fullUrl }}] [BC][/url]
 		{% else %}
 			XX
 		{%- endif -%}
@@ -58,8 +58,8 @@
 		[size=3][color=cyan]{{ division.locality.squadLeader }}[/color]
 		{% if squad.leader %}
 			[profile={{ squad.leader.clan_id }}][color=orange]{{ squad.leader.present().rankName }}[/color][/profile]
-			{%- if squad.leader.handles[0] -%}
-				[url={{ squad.leader.handles[0].fullUrl }}] [BC][/url]
+			{%- if squad.leader.handle -%}
+				[url={{ squad.leader.handle.fullUrl }}] [BC][/url]
 			{% else -%}
 				XXX
 			{%- endif -%}
@@ -72,8 +72,8 @@
 		[size=1]
 		{%- for member in squad.members -%}
 			[profile={{ member.clan_id }}]{{ member.present().rankName }}[/profile] -
-			{%- if member.handles[0] -%}
-				[url={{ member.handles[0].fullUrl }}][BC][/url]
+			{%- if member.handle -%}
+				[url={{ member.handle.fullUrl }}][BC][/url]
 			{% else %}
 				XXX
 			{% endif %}
