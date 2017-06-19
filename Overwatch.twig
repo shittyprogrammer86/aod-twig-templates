@@ -1,4 +1,4 @@
-Unexpected end of template in "[table='align:center,width: 800'][tr][td][CENTER][img]http://i.imgur.com/zDsnZfT.png[/img]
+[table='align:center,width: 800'][tr][td][CENTER][img]http://i.imgur.com/zDsnZfT.png[/img]
 
 
 [size=5][color=#FF0000][b][i][u]Division Leaders[/u][/i][/b][/color][/size]
@@ -31,7 +31,7 @@ Unexpected end of template in "[table='align:center,width: 800'][tr][td][CENTER]
 {% if platoon.leader is not null %}
 	[profile={{ platoon.leader.clan_id }}][color=40E0D0] {{ platoon.leader.present().rankName }}[/color][/profile]
 	{% if platoon.leader.handle %}
-		[url={{ platoon.leader.handle.url }}{{ platoon.leader.handle.pivot.value | replace({'#':'-'}) }}][OW][/url]
+		[url={{ platoon.leader.handle.fullURL | replace({'#':'-'}) }}][OW][/url]
 	{% else %}
 		[COLOR="#FF0000"][OW][/COLOR]
 	{% endif %}
@@ -47,7 +47,7 @@ Unexpected end of template in "[table='align:center,width: 800'][tr][td][CENTER]
 {% if squad.leader is not null %}
 	[profile={{ squad.leader.clan_id }}][color=FFA500] {{ squad.leader.present().rankName }}[/color][/profile]
 	{% if squad.leader.handle %}
-		[url={{ squad.leader.handle.url }}{{ squad.leader.handle.pivot.value | replace({'#':'-'}) }}][OW][/url]
+		[url={{ squad.leader.fullURL | replace({'#':'-'}) }}][OW][/url]
 	{% else %}
 		[COLOR="#FF0000"][OW][/COLOR]
 	{% endif %}
@@ -61,7 +61,7 @@ Unexpected end of template in "[table='align:center,width: 800'][tr][td][CENTER]
 	{% if member.recruiter_id == squad.leader.clan_id %}
 		[*][profile={{ member.clan_id }}]{{ member.present().rankName }}[/profile]
 		{% if member.handle %}
-			[url={{ member.handle.url }}{{ member.handle.pivot.value | replace({'#':'-'}) }}][OW][/url]
+			[url={{ member.handle.fullUrl | replace({'#':'-'}) }}][OW][/url]
 		{% else %}
 			[COLOR="#FF0000"][OW][/COLOR]
 {% endif %}
@@ -71,7 +71,7 @@ Unexpected end of template in "[table='align:center,width: 800'][tr][td][CENTER]
 	{% if member.recruiter_id != squad.leader.clan_id %}
 		[profile={{ member.clan_id }}]{{ member.present().rankName }}[/profile]
 		{% if member.handle %}
-			[url={{ member.handle.url }}{{ member.handle.pivot.value | replace({'#':'-'}) }}][OW][/url]
+			[url={{ member.handle.fullUrl | replace({'#':'-'}) }}][OW][/url]
 		{% else %}
 			[COLOR="#FF0000"][OW][/COLOR]
 {% endif %}
@@ -80,4 +80,4 @@ Unexpected end of template in "[table='align:center,width: 800'][tr][td][CENTER]
 [/size]
 
 [/td][/tr]
-[/table]" at line 80.
+[/table]
