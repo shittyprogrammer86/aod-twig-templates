@@ -1,0 +1,78 @@
+[table='align:center,width: 800'][tr][td][CENTER][img]http://i.imgur.com/zDsnZfT.png[/img]
+
+
+[size=5][color=#FF0000][b][i][u]Division Leaders[/u][/i][/b][/color][/size]
+
+[size=4]
+	{% for leader in division.leaders %}
+		[profile={{ leader.clan_id }}][color={{ sergeant.rank.color }}]{{ leader.present()rankName }}[/color][/profile] - {{ leader.position.name }}
+	{% endfor %}
+[/size]
+
+[size=3][color=#40E0D0]General Sergeants[/color]
+	{% for sergeant in division.generalSergeants %}
+		[profile={{ sergeant.cland_id }}][color={{ sergeant.rank.color }}]{{ sergeant.present().rankName }}[/color][/profile]
+	{% else %}
+		No general sergeants assigned
+	{% endfor %}
+[/size][/center][/td][/tr][/table]
+
+[table='align:center,width: 900']
+
+{% set max_platoons = 5 %}
+
+[size=5]{{ platoon.name }} #{{ loop.index }}[/size]
+Platoon #{{ loop.index }}
+
+{% if platoon.leader is not null %}
+	[profile={{ platoon.leader.clan_id }}][color=40E0D0] {{ platoon.leader.present().rankName }}[/color][/profile]
+	{% if platoon.leader.handle %}
+		[url={{ platoon.leader.handle.url }}{{ platoon.leader.handle.pivot.value | replace('#':'-') }}][OW][/url]
+	{% else %}
+		[COLOR="#FF0000"][OW][/COLOR]
+	{% end if %}
+{% else %}
+	[color=40E0D0]{{ TBA }}[/color]
+{% endif %}
+[/size]
+
+{% for squad in platoon.squads %}
+	[size=3][color=40E0D0]{{ division.squadLeader }}[/color][/size]
+	{% if squad.leader %}
+
+{% if squad.leader is not null %}
+	[profile={{ squad.leader.clan_id }}][color=FFA500] {{ squad.leader.present().rankName }}[/color][/profile]
+	{% if squad.leader.handle %}
+		[url={{ squad.leader.handle.url }}{{ squad.leader.handle.pivot.value | replace('#':'-') }}][OW][/url]
+	{% else %}
+		[COLOR="#FF0000"][OW][/COLOR]
+	{% end if %}
+{% else %}
+	[color=FFA500]{{ TBA }}[/color]
+{% end if %}
+[/size]
+
+[size=1]
+{% for member in squad.members %}
+	{% if member.recruiter_id == squad.leader.clan_id %}
+		[*][profile={{ member.clan_id }}]{{ member.present()rankName }}[/profile]
+		{% if member.handle %}
+			[url={{ member.handle.url }}{{ member.handle.pivot.value | replace('#':'-') }}][OW][/url]
+		{% else %}
+			[COLOR="#FF0000"][OW][/COLOR]
+{% end if %}
+		{% end if %}
+{% endfor %}
+{% for member in squad.members %}
+	{% if member.recruiter_id !== squad.leader.clan_id %}
+		[profile={{ member.clan_id }}]{{ member.present()rankName }}[/profile]
+		{% if member.handle %}
+			[url={{ member.handle.url }}{{ member.handle.pivot.value | replace('#':'-') }}][OW][/url]
+		{% else %}
+			[COLOR="#FF0000"][OW][/COLOR]
+{% end if %}
+		{% end if %}
+{% endfor %}
+[/size]
+[/tr][/td]
+[/table]
