@@ -21,13 +21,6 @@
 
 {% set max_platoons = 5 %}
 
-{% for platoon in division.platoons %}
-	{% if (loop.first) %}
-		[tr][td="width:33%"]
-	{% else %}
-		[td="width:33%"]
-	{% endif %}
-
 {% if platoon.leader is not null %}
 	[profile={{ platoon.leader.clan_id }}][color=40E0D0] {{ platoon.leader.present().rankName }}[/color][/profile]
 	{% if platoon.leader.handle %}
@@ -41,7 +34,7 @@
 [/size]
 
 {% for squad in platoon.squads %}
-	[size=3][color=40E0D0]{{ division.squadLeader }}[/color][/size]
+	[size=3][color=40E0D0]{{ division.squadLeader }}[/color]
 	{% if squad.leader %}
 
 {% if squad.leader is not null %}
@@ -53,8 +46,11 @@
 	{% endif %}
 {% else %}
 	[color=FFA500]{{ TBA }}[/color]
+	[/size]
+    {% endif %}
 {% endif %}
-[/size]
+{% endfor %}
+
 
 [size=1]
 {% for member in squad.members %}
@@ -64,7 +60,7 @@
 			[url={{ member.handle.fullUrl | replace({'#':'-'}) }}][OW][/url]
 		{% else %}
 			[COLOR="#FF0000"][OW][/COLOR]
-{% endif %}
+	{% endif %}
 		{% endif %}
 {% endfor %}
 {% for member in squad.members %}
