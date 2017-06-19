@@ -5,8 +5,13 @@
 
 [size=4]
 {# iterate leaders #}
-{% for leader in division.leaders %}
-	[profile={{ leader.clan_id }}][color={{ leader.rank.color }}]{{ leader.present().rankName }}[/color][/profile] - {{ leader.position.name }}[url={{ leader.handles[0].fullUrl }}][color=#00ff00]⟹[/color][/url]
+{%- for leader in division.leaders -%}
+	[profile={{ leader.clan_id }}][color={{ leader.rank.color }}]{{ leader.present().rankName }}[/color][/profile] - {{ leader.position.name }}
+    {%- if leader.handles[0] -%}
+    	[url={{ leader.handles[0].fullUrl }}[color=#00ff00]⟹[/color][/url]    
+    {% else %}
+    	XXX
+    {% endif %}   
 {% else %}
 	TBA
 {% endfor %}
@@ -16,7 +21,12 @@
 {# Iterate General Sergeants #}
 {% if division.generalSergeants %}
 	{% for sergeant in division.generalSergeants %}
-		[profile={{ sergeant.clan_id }}][color={{ sergeant.rank.color }}]{{ sergeant.present().rankName }}[/color][/profile][url={{ sergeant.handles[0].fullUrl }}][color=#00ff00]⟹[/color][/url]
+		[profile={{ sergeant.clan_id }}][color={{ sergeant.rank.color }}]{{ sergeant.present().rankName }}[/color][/profile]
+        {%- if sergeant.handles[0] -%}
+        	[url={{ sergeant.handles[0].fullUrl }}][color=#00ff00]⟹[/color][/url]
+        {% else %}
+        	XXX
+        {% endif %}
 	{% endfor %}
 {% else %}
 	No general sergeants assigned
@@ -27,7 +37,7 @@
 
 [/td][/tr][/table]
 
-[table='align:center,width: 500'][tr]
+[table='align:center,width: 600'][tr]
 {% for platoon in division.platoons %}
 	{% if loop.index == 1 %}
     	[td=colspan:2][center][size=5][color=ffff00]1st Wing[/color][/size]
@@ -59,9 +69,14 @@
     	[size=5][color=ffff00]Untitled[/color][/size]
     {% endif %}
     
-    [size=3][color=#40E0D0]Group {{ loop.index }} Commander[/color]
+    [size=3][color=#40E0D0]{{ ordSuffix(loop.index) }} Group Commander[/color]
 	{% if platoon.leader %}
-			[profile={{ platoon.leader.clan_id }}][color=#00FF00]{{ platoon.leader.present().rankName }}[/color][/profile] [url={{ platoon.leader.handles[0].fullUrl }}][color=#00ff00]⟹[/color][/url]
+			[profile={{ platoon.leader.clan_id }}][color=#00FF00]{{ platoon.leader.present().rankName }}[/color][/profile]
+            {%- if platoon.leader.handles[0] -%}
+            	[url={{ platoon.leader.handles[0].fullUrl }}][color=#00ff00]⟹[/color][/url]
+            {% else %}
+            	XXX
+            {% endif %}
     {% else %}
 		[color=#00FF00]TBA[/color]
     {% endif %}
@@ -75,9 +90,14 @@
         	[size=4][color=ffff00]Untitled[/color][/size]
         {% endif %}
         
-        [size=3][color=#40E0D0]Squadron {{ loop.index}} Commander[/color]
+        [size=3][color=#40E0D0]{{ ordSuffix(loop.index) }} Squadron Commander[/color]
         {% if squad.leader %}
-        		[profile={{ squad.leader.clan_id }}][color=#FFA500]{{ squad.leader.present().rankName }}[/profile][/color][url={{ squad.leader.handles[0].fullUrl }}][color=#00ff00]⟹[/color][/url]
+        		[profile={{ squad.leader.clan_id }}][color=#FFA500]{{ squad.leader.present().rankName }}[/profile][/color]
+                {%- if squad.leader.handles[0] -%}
+                	[url={{ squad.leader.handles[0].fullUrl }}][color=#00ff00]⟹[/color][/url]
+                {% else %}
+                	XXX
+                {% endif %}
         {% else %}
         	[color=#FFA500]TBA[/color]
         {% endif %}
@@ -85,7 +105,12 @@
             
 		{# iterate squad members #}
 		{% for member in squad.members %}
-			[profile={{ member.clan_id }}]{{ member.present().rankName }}[/profile][url={{ member.handles[0].fullurl }}][color=#00ff00]⟹[/color][/url]
+			[profile={{ member.clan_id }}]{{ member.present().rankName }}[/profile]
+            {%- if member.handles[0] -%}
+            	[url={{ member.handles[0].fullurl }}][color=#00ff00]⟹[/color][/url]
+            {% else %}
+            	XXX
+            {% endif %}
 		{% endfor %}
         
 	{% endfor %}
