@@ -70,3 +70,11 @@
 	{% endif %}
 {% endfor %}
 [/tr][/table]
+
+[size=3][color=#FF8C00][b]Leaves of Absence[/b][/color][/size]
+{# iterate leaves of absence #}
+	{% for sergeant in division.generalSergeants %}
+		[profile={{ sergeant.clan_id }}][color={{ sergeant.rank.color }}]{{ sergeant.present().rankName }}[/color][/profile]
+	{% else %}
+		No general Sergeants assigned
+	{% endfor %}
