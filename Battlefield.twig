@@ -87,3 +87,17 @@
 	{% endif %}
 {% endfor %}
 [/tr][/table]
+
+{% for member in squad.members %}
+	{% if member.recruiter_id == squad.leader.clan_id %}
+		{# echo direct recruits #}
+	{% endif %}
+{% endfor %}
+
+
+{% for member in squad.members %}
+	{% if member.recruiter_id !== squad.leader.clan_id %}
+		{# echo regular members #}
+	{% endif %}
+{% endfor %}
+
