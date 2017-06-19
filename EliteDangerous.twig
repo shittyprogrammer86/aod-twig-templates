@@ -76,6 +76,6 @@
 	{% for sergeant in division.generalSergeants %}
 		[profile={{ sergeant.clan_id }}][color={{ sergeant.rank.color }}]{{ sergeant.present().rankName }}[/color][/profile]
 	{% else %}
-		No general Sergeants assigned
+		LOA Information Unavailable at this time. Check back soon.
 	{% endfor %}
 [/center]
