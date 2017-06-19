@@ -15,7 +15,7 @@
 	{% endfor %}
 [/size]
 
-[size=3][color=#FF8C00][b]General Sergeants[/b][/color][/size]
+[size=3][color=#FF8C00][b]General Sergeants[/b][/color]
 {# iterate general sergeants #}
 	{% for sergeant in division.generalSergeants %}
 		[profile={{ sergeant.clan_id }}][color={{ sergeant.rank.color }}]{{ sergeant.present().rankName }}[/color][/profile]
@@ -23,7 +23,7 @@
 		No general Sergeants assigned
 	{% endfor %}
 
-[/center]
+[/center][/size]
 [/td][/tr][/table]
 
 [table="width: 800, align: center"]
