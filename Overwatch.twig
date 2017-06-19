@@ -1,4 +1,4 @@
-[table='align:center,width: 800'][tr][td][CENTER][img]http://i.imgur.com/zDsnZfT.png[/img]
+Unexpected end of template in "[table='align:center,width: 800'][tr][td][CENTER][img]http://i.imgur.com/zDsnZfT.png[/img]
 
 
 [size=5][color=#FF0000][b][i][u]Division Leaders[/u][/i][/b][/color][/size]
@@ -31,7 +31,7 @@
 {% if platoon.leader is not null %}
 	[profile={{ platoon.leader.clan_id }}][color=40E0D0] {{ platoon.leader.present().rankName }}[/color][/profile]
 	{% if platoon.leader.handle %}
-		[url={{ platoon.leader.handle.url }}{{ platoon.leader.handle.pivot.value | replace({'#','-'}) }}][OW][/url]
+		[url={{ platoon.leader.handle.url }}{{ platoon.leader.handle.pivot.value | replace({'#':'-'}) }}][OW][/url]
 	{% else %}
 		[COLOR="#FF0000"][OW][/COLOR]
 	{% endif %}
@@ -47,7 +47,7 @@
 {% if squad.leader is not null %}
 	[profile={{ squad.leader.clan_id }}][color=FFA500] {{ squad.leader.present().rankName }}[/color][/profile]
 	{% if squad.leader.handle %}
-		[url={{ squad.leader.handle.url }}{{ squad.leader.handle.pivot.value | replace({'#','-'}) }}][OW][/url]
+		[url={{ squad.leader.handle.url }}{{ squad.leader.handle.pivot.value | replace({'#':'-'}) }}][OW][/url]
 	{% else %}
 		[COLOR="#FF0000"][OW][/COLOR]
 	{% endif %}
@@ -61,22 +61,23 @@
 	{% if member.recruiter_id == squad.leader.clan_id %}
 		[*][profile={{ member.clan_id }}]{{ member.present().rankName }}[/profile]
 		{% if member.handle %}
-			[url={{ member.handle.url }}{{ member.handle.pivot.value | replace({'#','-'}) }}][OW][/url]
+			[url={{ member.handle.url }}{{ member.handle.pivot.value | replace({'#':'-'}) }}][OW][/url]
 		{% else %}
 			[COLOR="#FF0000"][OW][/COLOR]
 {% endif %}
 		{% endif %}
 {% endfor %}
 {% for member in squad.members %}
-	{% if member.recruiter_id !== squad.leader.clan_id %}
+	{% if member.recruiter_id != squad.leader.clan_id %}
 		[profile={{ member.clan_id }}]{{ member.present().rankName }}[/profile]
 		{% if member.handle %}
-			[url={{ member.handle.url }}{{ member.handle.pivot.value | replace({'#','-'}) }}][OW][/url]
+			[url={{ member.handle.url }}{{ member.handle.pivot.value | replace({'#':'-'}) }}][OW][/url]
 		{% else %}
 			[COLOR="#FF0000"][OW][/COLOR]
 {% endif %}
 		{% endif %}
 {% endfor %}
 [/size]
+
 [/td][/tr]
-[/table]
+[/table]" at line 80.
