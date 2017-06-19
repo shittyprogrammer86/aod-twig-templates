@@ -7,8 +7,8 @@
 {# iterate leaders #}
 {%- for leader in division.leaders -%}
 	[profile={{ leader.clan_id }}][color={{ leader.rank.color }}]{{ leader.present().rankName }}[/color][/profile] - {{ leader.position.name }}
-    {%- if leader.handles[0] -%}
-    	[url={{ leader.handles[0].fullUrl }}[color=#00ff00]⟹[/color][/url]    
+    {%- if leader.handle -%}
+    	[url={{ leader.handle.fullUrl }}[color=#00ff00]⟹[/color][/url]
     {% else %}
     	XXX
     {% endif %}   
@@ -22,8 +22,8 @@
 {% if division.generalSergeants %}
 	{% for sergeant in division.generalSergeants %}
 		[profile={{ sergeant.clan_id }}][color={{ sergeant.rank.color }}]{{ sergeant.present().rankName }}[/color][/profile]
-        {%- if sergeant.handles[0] -%}
-        	[url={{ sergeant.handles[0].fullUrl }}][color=#00ff00]⟹[/color][/url]
+        {%- if sergeant.handle -%}
+        	[url={{ sergeant.handle.fullUrl }}][color=#00ff00]⟹[/color][/url]
         {% else %}
         	XXX
         {% endif %}
@@ -72,8 +72,8 @@
     [size=3][color=#40E0D0]{{ ordSuffix(loop.index) }} Group Commander[/color]
 	{% if platoon.leader %}
 			[profile={{ platoon.leader.clan_id }}][color=#00FF00]{{ platoon.leader.present().rankName }}[/color][/profile]
-            {%- if platoon.leader.handles[0] -%}
-            	[url={{ platoon.leader.handles[0].fullUrl }}][color=#00ff00]⟹[/color][/url]
+            {%- if platoon.leader.handle -%}
+            	[url={{ platoon.leader.handle.fullUrl }}][color=#00ff00]⟹[/color][/url]
             {% else %}
             	XXX
             {% endif %}
@@ -93,8 +93,8 @@
         [size=3][color=#40E0D0]{{ ordSuffix(loop.index) }} Squadron Commander[/color]
         {% if squad.leader %}
         		[profile={{ squad.leader.clan_id }}][color=#FFA500]{{ squad.leader.present().rankName }}[/profile][/color]
-                {%- if squad.leader.handles[0] -%}
-                	[url={{ squad.leader.handles[0].fullUrl }}][color=#00ff00]⟹[/color][/url]
+                {%- if squad.leader.handle -%}
+                	[url={{ squad.leader.handle.fullUrl }}][color=#00ff00]⟹[/color][/url]
                 {% else %}
                 	XXX
                 {% endif %}
@@ -106,8 +106,8 @@
 		{# iterate squad members #}
 		{% for member in squad.members %}
 			[profile={{ member.clan_id }}]{{ member.present().rankName }}[/profile]
-            {%- if member.handles[0] -%}
-            	[url={{ member.handles[0].fullurl }}][color=#00ff00]⟹[/color][/url]
+            {%- if member.handle -%}
+            	[url={{ member.handle.fullurl }}][color=#00ff00]⟹[/color][/url]
             {% else %}
             	XXX
             {% endif %}
