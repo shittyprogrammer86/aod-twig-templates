@@ -1,0 +1,81 @@
+{# some variables #}
+
+
+{% set TBA = "[color=orange]TBA[/color]" %}
+[table="width: 800, align: center"][tr][td]
+
+{# division graphic header #}
+[img]http://i.imgur.com/IAdO7MY.png[/img]
+
+[CENTER][SIZE=5][COLOR=#FF0000][B][U]Division Leaders[/U][/B][/COLOR][/SIZE]
+[size=4]
+{# iterate leaders #}
+	{% for leader in division.leaders %}
+		[profile={{ leader.clan_id }}][color={{ leader.rank.color }}]{{ leader.present().rankName }}[/color][/profile] - {{ leader.position.name }}
+	{% endfor %}
+[/size]
+
+[size=3][color=#FF8C00][b]General Sergeants[/b][/color][/size]
+{# iterate general sergeants #}
+	{% for sergeant in division.generalSergeants %}
+		[profile={{ sergeant.clan_id }}][color={{ sergeant.rank.color }}]{{ sergeant.present().rankName }}[/color][/profile]
+	{% else %}
+		No general Sergeants assigned
+	{% endfor %}
+
+[/center]
+[/td][/tr][/table]
+
+[table="width: 800, align: center"]
+{# iterate platoons #}
+{% for platoon in division.platoons %}
+	{% if (loop.first) %}
+		[tr][td="width:33%"]
+	{% else %}
+		[td="width:33%"]
+	{% endif %}
+	
+	[color=red][size=5]{{ division.locality.platoon }} #{{ loop.index }}[/size][/color]
+	[size=3][i]{{ platoon.name }}[/i]
+	
+	[color=cyan]{{ division.locality.platoonLeader }}[/color]
+	{% if platoon.leader %}
+		[profile={{ platoon.leader.clan_id }}][color=#00FF00]{{ platoon.leader.present().rankName }}[/color][/profile]
+	{% else %}
+		{{ TBA }}
+	{% endif %}
+	[/size]
+	
+	{# iterate squads #}
+	{% for squad in platoon.squads %}
+		[size=3][color=cyan]{{ division.locality.squadLeader }}[/color]
+		{% if squad.leader %}
+			[profile={{ squad.leader.clan_id }}][color=orange]{{ squad.leader.present().rankName }}[/color][/profile]
+		{% else %}
+			{{ TBA }}
+		{% endif %}
+		[/size]
+		
+		{# iterate squad members #}
+		[size=1]
+		{%- for member in squad.members -%}
+			[profile={{ member.clan_id }}]{{ member.present().rankName }}[/profile]
+		{% endfor %}
+		[/size]
+	{% endfor %}
+	[/td]
+	
+	{% if loop.index is divisible by (3) %}
+		[/tr][tr]
+	{% endif %}
+{% endfor %}
+[/tr][/table]
+
+[center][size=3][color=#FF8C00][b]Leaves of Absence[/b][/color][/size]
+{# iterate leaves of absence #}
+	{% for sergeant in division.generalSergeants %}
+		[profile={{ sergeant.clan_id }}][color={{ sergeant.rank.color }}]{{ sergeant.present().rankName }}[/color][/profile]
+	{% else %}
+		No general Sergeants assigned
+	{% endfor %}
+[/center]
