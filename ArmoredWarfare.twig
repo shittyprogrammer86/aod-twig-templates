@@ -32,11 +32,10 @@
 		{# iterate squad members #}
 		{% for member in squad.members %}
 			{% if loop.index == 1 %}
-				[size=3][profile={{ member.clan_id }}][color=#FFA500]{{ member.present().rankName }}[/color][/profile][/size]
-
-			{% else %}
-				[profile={{ member.clan_id }}]{{ member.present().rankName }}[/profile]
+				[size=3][profile={{ squad.leader.clan_id }}][color=#FFA500]{{ squad.leader.present().rankName }}[/color][/profile][/size]
+				
 			{% endif %}
+				[profile={{ member.clan_id }}]{{ member.present().rankName }}[/profile]
 		{% endfor %}
 		[/td][td]
 	{% endfor %}
