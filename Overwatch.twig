@@ -39,15 +39,13 @@
 	{% else %} {# no platoon leader #}
 		[color=40E0D0]{{ TBA }}[/color]
 	{% endif %}
-	
-	
-	
 	{# iterate squad #}
 	{% for squad in platoon.squads %}
 		
 		
+		[size=3][color=#40E0D0]Squad Leader[/color][/size]
 		{% if squad.leader %}
-			[size=3][profile={{ squad.leader.clan_id }}][color=00FF00] {{ squad.leader.present().rankName }}  [/color][/profile][/size]
+			[size=3][profile={{ squad.leader.clan_id }}][color=FFA500] {{ squad.leader.present().rankName }}  [/color][/profile][/size]
 			
 			{%- if squad.leader.handle -%}
 				[url={{ squad.leader.handle.fullURL | replace({'#':'-'}) }}][OW][/url]
@@ -56,24 +54,39 @@
 			{%- endif -%}
 		
 		{% else %} {# no squad leader #}
-			No Squad Leader
+			[COLOR=FFA500]TBA[/COLOR]
 		{% endif %}
 		
 		
 		
-		{# iterate squad members #}
-		
+		{# iterate direct squad members #}
+		[size=1][list=1]
 		{% for member in squad.members %}
-			[profile={{ member.clan_id }}][color=00FF00] {{ member.present().rankName }}  [/color][/profile]
-			
-			{%- if member.handle -%}
-				[url={{ member.handle.fullURL | replace({'#':'-'}) }}][OW][/url]
-			{% else %} {# no handle #}
-				[COLOR="#FF0000"][OW][/COLOR]
-			{%- endif -%}
-
+			{% if member.recruiter_id == squad.leader.clan_id %}
+				[*][profile={{ member.clan_id }}] {{ member.present().rankName }}[/profile]
+				
+				{%- if member.handle -%}
+					[url={{ member.handle.fullURL | replace({'#':'-'}) }}][OW][/url]
+				{% else %} {# no handle #}
+					[COLOR="#FF0000"][OW][/COLOR]
+				{%- endif -%}
+			{% endif %}
 		{% endfor %}
-	
+		[/list][/size]
+		{# iterate indirect squad members #}
+		[size=1]
+		{% for member in squad.members %}
+			{% if member.recruiter_id != squad.leader.clan_id %}
+				[profile={{ member.clan_id }}]{{ member.present().rankName }}[/profile]
+				
+				{%- if member.handle -%}
+					[url={{ member.handle.fullUrl | replace({'#':'-'}) }}][OW][/url]
+				{% else %}
+					[COLOR="#FF0000"][OW][/COLOR]
+				{%- endif -%}
+			{% endif %}
+		{% endfor %}
+		[/size]
 	
 	{% endfor %} {# end squad iteration #}
 
