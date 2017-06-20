@@ -1,0 +1,85 @@
+[table="width: 800, align: center"][tr][td]
+[center]
+
+{# battlefield header #}
+[img]http://i.imgur.com/Xb2X4je.png[/img]
+
+[size=5][color=#00FF00][b][i][u]Division Leadership[/u][/i][/b][/color][/size]
+
+[size=4]
+{# iterate leaders #}
+	{% for leader in division.leaders %}
+		[profile={{ leader.clan_id }}][color={{ leader.rank.color }}]{{ leader.present().rankName }}[/color][/profile] - {{ leader.position.name }}
+	{% endfor %}
+[/size]
+
+[size=3][color=#40E0D0]General Sergeants[/color]
+{# iterate general sergeants #}
+	{% for sergeant in division.generalSergeants %}
+		[profile={{ sergeant.clan_id }}][color={{ sergeant.rank.color }}]{{ sergeant.present().rankName }}[/color][/profile]
+	{% else %}
+		No general sergeants assigned
+	{% endfor %}
+[/size]
+[/center]
+[/td][/tr][/table]
+
+[table="width: 800, align: center"]
+{# iterate platoons #}
+{% for platoon in division.platoons %}
+	{% if (loop.first) %}
+		[tr][td="width:33%"]
+	{% else %}
+		[td="width:33%"]
+	{% endif %}
+	
+	[color=red][size=5]{{ division.locality.platoon }} #{{ loop.index }}[/size][/color]
+	[size=3][i]{{ platoon.name }}[/i]
+	
+	[color=cyan]{{ division.locality.platoonLeader }}[/color]
+	{% if platoon.leader %}
+		[profile={{ platoon.leader.clan_id }}][color=#00FF00]{{ platoon.leader.present().rankName }}[/color][/profile]
+		{%- if platoon.leader.handle -%}
+			[url={{ platoon.leader.handle.fullUrl }}] [BC][/url]
+		{% else %}
+			XX
+		{%- endif -%}
+	{% else %}
+		{{ TBA }}
+	{% endif %}
+	[/size]
+	
+	{# iterate squads #}
+	{% for squad in platoon.squads %}
+		[size=3][color=cyan]{{ division.locality.squadLeader }}[/color]
+		{% if squad.leader %}
+			[profile={{ squad.leader.clan_id }}][color=orange]{{ squad.leader.present().rankName }}[/color][/profile]
+			{%- if squad.leader.handle -%}
+				[url={{ squad.leader.handle.fullUrl }}] [BC][/url]
+			{% else -%}
+				XXX
+			{%- endif -%}
+		{% else %}
+			{{ TBA }}
+		{% endif %}
+		[/size]
+		
+		{# iterate squad members #}
+		[size=1][list=1]
+		{%- for member in squad.members -%}
+			[*][profile={{ member.clan_id }}]{{ member.present().rankName }}[/profile] -
+			{%- if member.handle -%}
+				[url={{ member.handle.fullUrl }}][BC][/url]
+			{% else %}
+				XXX
+			{% endif %}
+		{% endfor %}
+		[/list][/size]
+	{% endfor %}
+	[/td]
+	
+	{% if loop.index is divisible by (3) %}
+		[/tr][tr]
+	{% endif %}
+{% endfor %}
+[/tr][/table]
