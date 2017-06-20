@@ -1,0 +1,45 @@
+{% set TBA = "[color=40E0D0]TBA[/color]" %}
+{% set max_platoons = 4 %}
+[table='align:center,width: 800'][tr][td][CENTER][img]http://i.imgur.com/zDsnZfT.png[/img]
+
+
+[size=5][color=#FF0000][b][i][u]Division Leaders[/u][/i][/b][/color][/size]
+[size=4]{% for leader in division.leaders %}
+		[profile={{ leader.clan_id }}][color={{ leader.rank.color }}]{{ leader.present().rankName }}[/color][/profile] - {{ leader.position.name }}
+	{% endfor %}
+[/size]
+
+[size=3][color=#40E0D0]General Sergeants[/color]
+	{% for sergeant in division.generalSergeants %}
+		[profile={{ sergeant.cland_id }}][color={{ sergeant.rank.color }}]{{ sergeant.present().rankName }}[/color][/profile]
+	{% else %}
+		
+	{% endfor %}
+[/size][/center][/td][/tr][/table]
+[table='align:center,width: 900']
+
+{% for platoon in division.platoons %}
+	{% if (loop.first) %}
+		[tr][td]
+	{% else %}
+		[/td][td]
+	{% endif %}
+    
+[size=5]{{ diivision.locality.platoon }} {{ platoon.name }}[/size]
+            
+            [size=3][color=#40E0D0]Platoon Leader[/color][/size]
+            [size=3][profile={{ platoon.leader.clan_id }}][color=00FF00] {{ platoon.leader.present().rankName }}  [/color][/profile][/size]
+            {%- if platoon.leader.handle -%}
+            	[url={{ platoon.leader.handle.fullURL | replace({'#':'-'}) }}][OW][/url]
+	{% else %}
+		[COLOR="#FF0000"][OW][/COLOR]
+	{%- endif -%}
+{% else %}
+	[color=40E0D0]{{ TBA }}[/color]
+{% endfor %}
+[/td]
+
+{% if loop.index is divisible by (4) %}
+		[/tr][tr]
+{% endif %}
+[/table]
