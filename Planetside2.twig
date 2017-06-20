@@ -24,14 +24,9 @@
 [/center]
 [/td][/tr][/table]
 
-[table="width: 800, align: center"]
 {# iterate platoons #}
+[center]
 {% for platoon in division.platoons %}
-	{% if (loop.first) %}
-		[tr][td="width:33%"]
-	{% else %}
-		[td="width:33%"]
-	{% endif %}
 	
 	[color=red][size=5]{{ division.locality.platoon }} #{{ loop.index }}[/size][/color]
 	[size=3][i]{{ platoon.name }}[/i]
@@ -45,7 +40,9 @@
 	[/size]
 	
 	{# iterate squads #}
+	[table="width: 800, align: center"][tr][td]
 	{% for squad in platoon.squads %}
+
 		[size=3][color=cyan]{{ division.locality.squadLeader }}[/color]
 		{% if squad.leader %}
 			[profile={{ squad.leader.clan_id }}][color=orange]{{ squad.leader.present().rankName }}[/color][/profile]
@@ -60,11 +57,9 @@
 			[*][profile={{ member.clan_id }}]{{ member.present().rankName }}[/profile]
 		{% endfor %}
 		[/list][/size]
+		[/td][td]
 	{% endfor %}
-	[/td]
-	
-	{% if loop.index is divisible by (3) %}
-		[/tr][tr]
-	{% endif %}
+	[/td][/tr][/table]
 {% endfor %}
-[/tr][/table]
+
+[/center]
