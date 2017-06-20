@@ -58,9 +58,25 @@
 		{% else %} {# no squad leader #}
 			No Squad Leader
 		{% endif %}
+		
+		
+		
+		{# iterate squad members #}
+		
+		{% for member in squad.members %}
+			[profile={{ member.clan_id }}][color=00FF00] {{ member.present().rankName }}  [/color][/profile]
+			
+			{%- if member.handle -%}
+				[url={{ member.handle.fullURL | replace({'#':'-'}) }}][OW][/url]
+			{% else %} {# no handle #}
+				[COLOR="#FF0000"][OW][/COLOR]
+			{%- endif -%}
+			
+		{% endfor %}
+	
 	
 	{% endfor %} {# end squad iteration #}
-	
+
 
 {% endfor %} {# end platoon iteration #}
 [/td]
