@@ -4,7 +4,7 @@
 {# Planetside header #}
 [img]http://i.imgur.com/BKkTYMC.jpg[/img]
 
-[size=5][color=#00FF00][b][i][u]Division Leadership[/u][/i][/b][/color][/size]
+[size=5][color=#FF0000][b][i][u]Division Leadership[/u][/i][/b][/color][/size]
 
 [size=4]
 {# iterate leaders #}
@@ -13,7 +13,7 @@
 	{% endfor %}
 [/size]
 
-[size=3][color=#40E0D0]General Sergeants[/color]
+[size=3][color=#00FFFF]General Sergeants[/color]
 {# iterate general sergeants #}
 	{% for sergeant in division.generalSergeants %}
 		[profile={{ sergeant.clan_id }}][color={{ sergeant.rank.color }}]{{ sergeant.present().rankName }}[/color][/profile]
@@ -28,12 +28,10 @@
 [center]
 {% for platoon in division.platoons %}
 	
-	[color=red][size=5]{{ division.locality.platoon }} #{{ loop.index }}[/size][/color]
-	[size=3][i]{{ platoon.name }}[/i]
-	
-	[color=cyan]{{ division.locality.platoonLeader }}[/color]
+	[color=#00FFFF][size=5]{{ division.locality.platoon }} #{{ loop.index }}[/size][/color]
+	[size=3]
 	{% if platoon.leader %}
-		[profile={{ platoon.leader.clan_id }}][color=#00FF00]{{ platoon.leader.present().rankName }}[/color][/profile]
+		[profile={{ platoon.leader.clan_id }}][color=#FFA07A]{{ platoon.leader.present().rankName }}[/color][/profile]
 	{% else %}
 		{{ TBA }}
 	{% endif %}
