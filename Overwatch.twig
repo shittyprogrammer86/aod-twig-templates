@@ -40,10 +40,10 @@
 		[color=40E0D0]{{ TBA }}[/color]
 	{% endif %}
 	{# iterate squad #}
-	{% for squad in platoon.squads %}
+    {% for squad in platoon.squads %}
 		
-		
-		[size=3][color=#40E0D0]Squad Leader[/color][/size]
+        
+        [size=3][color=#40E0D0]Squad Leader[/color][/size]
 		{% if squad.leader %}
 			[size=3][profile={{ squad.leader.clan_id }}][color=FFA500] {{ squad.leader.present().rankName }}  [/color][/profile][/size]
 			
@@ -60,33 +60,16 @@
 		
 		
 		{# iterate direct squad members #}
-		[size=1][list=1]
+[size=1][list=1]
 		{% for member in squad.members %}
-			{% if member.recruiter_id == squad.leader.clan_id %}
 				[*][profile={{ member.clan_id }}] {{ member.present().rankName }}[/profile]
-				
 				{%- if member.handle -%}
 					[url={{ member.handle.fullURL | replace({'#':'-'}) }}][OW][/url]
-				{% else %} {# no handle #}
-					[COLOR="#FF0000"][OW][/COLOR]
-				{%- endif -%}
-			{% endif %}
-		{% endfor %}
-		[/list][/size]
-		{# iterate indirect squad members #}
-		[size=1]
-		{% for member in squad.members %}
-			{% if member.recruiter_id != squad.leader.clan_id %}
-				[profile={{ member.clan_id }}]{{ member.present().rankName }}[/profile]
-				
-				{%- if member.handle -%}
-					[url={{ member.handle.fullUrl | replace({'#':'-'}) }}][OW][/url]
-				{% else %}
-					[COLOR="#FF0000"][OW][/COLOR]
-				{%- endif -%}
-			{% endif %}
-		{% endfor %}
-		[/size]
+			{% else %} {# no handle #}
+				[COLOR="#FF0000"][OW][/COLOR]
+			{%- endif -%}
+         {% endfor %}
+[/list][/size]
 	
 	{% endfor %} {# end squad iteration #}
 
