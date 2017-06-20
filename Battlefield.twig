@@ -1,7 +1,7 @@
 {# some variables #}
+dfasdfasdfasdfasdfasdfasdfasdf
+
 {% set TBA = "[color=orange]TBA[/color]" %}
-
-
 [table="width: 800, align: center"][tr][td]
 [center]
 
@@ -24,9 +24,9 @@
 	{% else %}
 		No general sergeants assigned
 	{% endfor %}
-
+[/size]
 [/center]
-[/size][/td][/tr][/table]
+[/td][/tr][/table]
 
 [table="width: 800, align: center"]
 {# iterate platoons #}
@@ -69,16 +69,16 @@
 		[/size]
 		
 		{# iterate squad members #}
-		[size=1]
+		[size=1][list=1]
 		{%- for member in squad.members -%}
-			[profile={{ member.clan_id }}]{{ member.present().rankName }}[/profile] -
+			[*][profile={{ member.clan_id }}]{{ member.present().rankName }}[/profile] -
 			{%- if member.handle -%}
 				[url={{ member.handle.fullUrl }}][BC][/url]
 			{% else %}
 				XXX
 			{% endif %}
 		{% endfor %}
-		[/size]
+		[/list][/size]
 	{% endfor %}
 	[/td]
 	
@@ -87,17 +87,3 @@
 	{% endif %}
 {% endfor %}
 [/tr][/table]
-
-{% for member in squad.members %}
-	{% if member.recruiter_id == squad.leader.clan_id %}
-		{# echo direct recruits #}
-	{% endif %}
-{% endfor %}
-
-
-{% for member in squad.members %}
-	{% if member.recruiter_id !== squad.leader.clan_id %}
-		{# echo regular members #}
-	{% endif %}
-{% endfor %}
-
