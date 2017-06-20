@@ -1,8 +1,8 @@
 [table="width: 800, align: center"][tr][td]
 [center]
 
-{# battlefield header #}
-[img]http://i.imgur.com/Xb2X4je.png[/img]
+{# Planetside header #}
+[img]http://i.imgur.com/BKkTYMC.jpg[/img]
 
 [size=5][color=#00FF00][b][i][u]Division Leadership[/u][/i][/b][/color][/size]
 
@@ -39,11 +39,6 @@
 	[color=cyan]{{ division.locality.platoonLeader }}[/color]
 	{% if platoon.leader %}
 		[profile={{ platoon.leader.clan_id }}][color=#00FF00]{{ platoon.leader.present().rankName }}[/color][/profile]
-		{%- if platoon.leader.handle -%}
-			[url={{ platoon.leader.handle.fullUrl }}] [BC][/url]
-		{% else %}
-			XX
-		{%- endif -%}
 	{% else %}
 		{{ TBA }}
 	{% endif %}
@@ -54,11 +49,6 @@
 		[size=3][color=cyan]{{ division.locality.squadLeader }}[/color]
 		{% if squad.leader %}
 			[profile={{ squad.leader.clan_id }}][color=orange]{{ squad.leader.present().rankName }}[/color][/profile]
-			{%- if squad.leader.handle -%}
-				[url={{ squad.leader.handle.fullUrl }}] [BC][/url]
-			{% else -%}
-				XXX
-			{%- endif -%}
 		{% else %}
 			{{ TBA }}
 		{% endif %}
@@ -68,11 +58,6 @@
 		[size=1][list=1]
 		{%- for member in squad.members -%}
 			[*][profile={{ member.clan_id }}]{{ member.present().rankName }}[/profile] -
-			{%- if member.handle -%}
-				[url={{ member.handle.fullUrl }}][BC][/url]
-			{% else %}
-				XXX
-			{% endif %}
 		{% endfor %}
 		[/list][/size]
 	{% endfor %}
