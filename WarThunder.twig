@@ -7,11 +7,11 @@
 {# iterate leaders #}
 {% for leader in division.leaders -%}
 	[profile={{ leader.clan_id }}][color={{ leader.rank.color }}]{{ leader.present().rankName }}[/color][/profile] - {{ leader.position.name }}
-	{%- if leader.handle -%}
-		[url={{ leader.handle.fullUrl }}][color=#00ff00]⟹[/color][/url]
-	{% else %}
-		XXX
-	{% endif %}
+    {%- if leader.handle -%}
+    	[url={{ leader.handle.fullUrl }}][color=#00ff00]⟹[/color][/url]
+    {% else %}
+    	XXX
+    {% endif %}   
 {%- else %}
 	TBA
 {% endfor %}
@@ -22,99 +22,98 @@
 {% if division.generalSergeants %}
 	{% for sergeant in division.generalSergeants %}
 		[profile={{ sergeant.clan_id }}][color={{ sergeant.rank.color }}]{{ sergeant.present().rankName }}[/color][/profile]
-		{%- if sergeant.handle -%}
-			[url={{ sergeant.handle.fullUrl }}][color=#00ff00]⟹[/color][/url]
-		{% else %}
-			XXX
-		{% endif %}
+        {%- if sergeant.handle -%}
+        	[url={{ sergeant.handle.fullUrl }}][color=#00ff00]⟹[/color][/url]
+        {% else %}
+        	XXX
+        {% endif %}
 	{% endfor %}
 {% else %}
 	No general sergeants assigned
 {% endif %}
+------------------------------------------------------------------------------------------
 [/size]
-
 [/center]
-
 [/td][/tr][/table]
 
 [table='align:center,width: 600'][tr]
 {% for platoon in division.platoons %}
 	{% if loop.index == 1 %}
-		[td=colspan:2][center][size=5][color=ffff00]1st Wing[/color][/size]
-		
-		[size=3][color=#40E0D0]1st Wing Commander[/color]
-		[profile=][color=#00FF00]Member 1[/profile][/color][/size][/center][/td][/tr][tr]
-	{% elseif loop.index == 3 %}
-		[td=colspan:2][center][size=5][color=ffff00]2nd Wing[/color][/size]
-		
-		[size=3][color=#40E0D0]2nd Wing Commander[/color]
-		[profile=][color=#00FF00]Member 2[/color][/profile][/size][/center][/td][/tr][tr]
-	{% elseif loop.index == 5 %}
-		[td=colspan:2][center][size=5][color=ffff00]3rd Wing[/color][/size]
-		
-		[size=3][color=#40E0D0]3rd Wing Commander[/color]
-		[profile=][color=#00FF00]Member 2[/color][/profile][/size][/center][/td][/tr][tr]
-	{% else %}
-	{% endif %}
-	[td]
+    	[td=colspan:2][center][size=5][color=ffff00]1st Group[/color][/size]
+        
+        [size=3][color=#40E0D0]1st Group Commander[/color]
+        [profile=][color=#00FF00]Member 1[/profile][/color][/size][/center][/td][/tr][tr]
+    {% elseif loop.index == 3 %}
+    	[td=colspan:2][center][size=5][color=ffff00]2nd Group[/color][/size]
+        
+        [size=3][color=#40E0D0]2nd Group Commander[/color]
+        [profile=][color=#00FF00]Member 2[/color][/profile][/size][/center][/td][/tr][tr]
+    {% elseif loop.index == 5 %}
+    	[td=colspan:2][center][size=5][color=ffff00]3rd Group[/color][/size]
+        
+        [size=3][color=#40E0D0]3rd Group Commander[/color]
+        [profile=][color=#00FF00]Member 2[/color][/profile][/size][/center][/td][/tr][tr]
+    {% else %}
+    {% endif %}
+[td]
 	{% if platoon.logo %}
 		[center][img]{{ platoon.logo }}[/img][/center]
 	{% else %}
-	
+
 	{% endif %}
 	
-	{% if platoon.name %}
-		[size=5][color=ffff00]{{ platoon.name }}[/color][/size]
-	{% else %}
-		[size=5][color=ffff00]Untitled[/color][/size]
-	{% endif %}
-	
-	[size=3][color=#40E0D0]{{ ordSuffix(loop.index) }} Group Commander[/color]
+    {% if platoon.name %}
+    	[size=5][color=ffff00]{{ platoon.name }}[/color][/size]
+    {% else %}
+    	[size=5][color=ffff00]Untitled[/color][/size]
+    {% endif %}
+    
+    [size=3][color=#40E0D0]{{ ordSuffix(loop.index) }} Wing Commander[/color]
 	{% if platoon.leader %}
-		[profile={{ platoon.leader.clan_id }}][color=#00FF00]{{ platoon.leader.present().rankName }}[/color][/profile]
-		{%- if platoon.leader.handle -%}
-			[url={{ platoon.leader.handle.fullUrl }}][color=#00ff00]⟹[/color][/url]
-		{% else %}
-			XXX
-		{% endif %}
-	{% else %}
+			[profile={{ platoon.leader.clan_id }}][color=#00FF00]{{ platoon.leader.present().rankName }}[/color][/profile]
+            {%- if platoon.leader.handle -%}
+            	[url={{ platoon.leader.handle.fullUrl }}][color=#00ff00]⟹[/color][/url]
+            {% else %}
+            	XXX
+            {% endif %}
+    {% else %}
 		[color=#00FF00]TBA[/color]
-	{% endif %}
-	[/size]
-	
+    {% endif %}
+    [/size]
+
 	{# iterate squads #}
 	{% for squad in platoon.squads %}
 		{% if squad.name %}
-			[size=4][color=ffff00]{{ squad.name }}[/color][/size]
-		{% else %}
-			[size=4][color=ffff00]Untitled[/color][/size]
-		{% endif %}
-		
-		[size=3][color=#40E0D0]{{ ordSuffix(loop.index) }} Squadron Commander[/color]
-		{% if squad.leader %}
-			[profile={{ squad.leader.clan_id }}][color=#FFA500]{{ squad.leader.present().rankName }}[/profile][/color]
-			{%- if squad.leader.handle -%}
-				[url={{ squad.leader.handle.fullUrl }}][color=#00ff00]⟹[/color][/url]
-			{% else %}
-				XXX
-			{% endif %}
-		{% else %}
-			[color=#FFA500]TBA[/color]
-		{% endif %}
-		[/size]
-		
+        	[size=4][color=ffff00]{{ squad.name }}[/color][/size]
+        {% else %}
+        	[size=4][color=ffff00]Untitled[/color][/size]
+        {% endif %}
+        
+        [size=3][color=#40E0D0]{{ ordSuffix(loop.index) }} Squadron Commander[/color]
+        {% if squad.leader %}
+        		[profile={{ squad.leader.clan_id }}][color=#FFA500]{{ squad.leader.present().rankName }}[/profile][/color]
+                {%- if squad.leader.handle -%}
+                	[url={{ squad.leader.handle.fullUrl }}][color=#00ff00]⟹[/color][/url]
+                {% else %}
+                	XXX
+                {% endif %}
+        {% else %}
+        	[color=#FFA500]TBA[/color]
+        {% endif %}
+        [/size]
+            
 		{# iterate squad members #}
 		{% for member in squad.members %}
 			[profile={{ member.clan_id }}]{{ member.present().rankName }}[/profile]
-			{%- if member.handle -%}
-				[url={{ member.handle.fullurl }}][color=#00ff00]⟹[/color][/url]
-			{% else %}
-				XXX
-			{% endif %}
+            {%- if member.handle -%}
+            	[url={{ member.handle.fullurl }}][color=#00ff00]⟹[/color][/url]
+            {% else %}
+            	XXX
+            {% endif %}
 		{% endfor %}
-	
+        
 	{% endfor %}
-	
+
 	{% if loop.index is divisible by(max_platoons) %}
 		[/td][/tr][tr]
 	{% else %}
