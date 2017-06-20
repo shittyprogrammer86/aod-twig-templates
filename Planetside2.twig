@@ -29,19 +29,18 @@
 {% for platoon in division.platoons %}
 	
 	[color=#00FFFF][size=5]{{ division.locality.platoon }} #{{ loop.index }}[/size][/color]
-	[size=3]
+	[size=4]
 	{% if platoon.leader %}
 		[profile={{ platoon.leader.clan_id }}][color=#FFA07A]{{ platoon.leader.present().rankName }}[/color][/profile]
 	{% else %}
 		{{ TBA }}
 	{% endif %}
 	[/size]
-	
+
 	{# iterate squads #}
 	[table="width: 900, align: center"][tr][td]
 	{% for squad in platoon.squads %}
-
-		[size=3][color=cyan]{{ division.locality.squadLeader }}[/color]
+		[size=4]
 		{% if squad.leader %}
 			[profile={{ squad.leader.clan_id }}][color=orange]{{ squad.leader.present().rankName }}[/color][/profile]
 		{% else %}
