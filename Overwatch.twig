@@ -2,78 +2,36 @@
 
 
 [size=5][color=#FF0000][b][i][u]Division Leaders[/u][/i][/b][/color][/size]
-
-[size=4]
-	{% for leader in division.leaders %}
-		[profile={{ leader.clan_id }}][color={{ leader.rank.color }}]{{ leader.present().rankName }}[/color][/profile] - {{ leader.position.name }}
-	{% endfor %}
-[/size]
+[size=4]		[profile=27004][color=#2E2EFE]SSgt 31drew31[/color][/profile] - Commanding Officer
+			[profile=8784][color=#00FF00]Sgt Cryptix[/color][/profile] - Executive Officer
+	[/size]
 
 [size=3][color=#40E0D0]General Sergeants[/color]
-	{% for sergeant in division.generalSergeants %}
-		[profile={{ sergeant.cland_id }}][color={{ sergeant.rank.color }}]{{ sergeant.present().rankName }}[/color][/profile]
-	{% else %}
-		
-	{% endfor %}
-[/size][/center][/td][/tr][/table]
-
+			
+	[/size][/center][/td][/tr][/table]
 [table='align:center,width: 900']
 
-{% set max_platoons = 5 %}
+			[tr][td]
+	    
+[size=5] Talon[/size]
+            
+            [size=3][color=#40E0D0]Platoon Leader[/color][/size]
+            [size=3][profile=38326][color=00FF00] Sgt Lulhz  [/color][/profile][/size]		[COLOR="#FF0000"][OW][/COLOR]			[/td][td]
+	    
+[size=5] Vishkar Corp[/size]
+            
+            [size=3][color=#40E0D0]Platoon Leader[/color][/size]
+            [size=3][profile=27590][color=00FF00] Sgt Frrunnkkiss  [/color][/profile][/size]		[COLOR="#FF0000"][OW][/COLOR]			[/td][td]
+	    
+[size=5] Helix Security[/size]
+            
+            [size=3][color=#40E0D0]Platoon Leader[/color][/size]
+            [size=3][profile=42444][color=00FF00] Sgt Poyzun  [/color][/profile][/size]		[COLOR="#FF0000"][OW][/COLOR]			[/td][td]
+	    
+[size=5] Blackwatch[/size]
+            
+            [size=3][color=#40E0D0]Platoon Leader[/color][/size]
+            [size=3][profile=31564][color=00FF00] Cpl Sythandria  [/color][/profile][/size]		[COLOR="#FF0000"][OW][/COLOR][/td]
 
-{% if platoon.leader is not null %}
-	[profile={{ platoon.leader.clan_id }}][color=40E0D0] {{ platoon.leader.present().rankName }}[/color][/profile]
-	{% if platoon.leader.handle %}
-		[url={{ platoon.leader.handle.fullURL | replace({'#':'-'}) }}][OW][/url]
-	{% else %}
-		[COLOR="#FF0000"][OW][/COLOR]
-	{% endif %}
-{% else %}
-	[color=40E0D0]{{ TBA }}[/color]
-{% endif %}
-[/size]
-
-{% for squad in platoon.squads %}
-	[size=3][color=40E0D0]{{ division.squadLeader }}[/color]
-	{% if squad.leader %}
-
-{% if squad.leader is not null %}
-	[profile={{ squad.leader.clan_id }}][color=FFA500] {{ squad.leader.present().rankName }}[/color][/profile]
-	{% if squad.leader.handle %}
-		[url={{ squad.leader.fullURL | replace({'#':'-'}) }}][OW][/url]
-	{% else %}
-		[COLOR="#FF0000"][OW][/COLOR]
-	{% endif %}
-{% else %}
-	[color=FFA500]{{ TBA }}[/color]
-	[/size]
-    {% endif %}
-{% endif %}
-{% endfor %}
-
-
-[size=1]
-{% for member in squad.members %}
-	{% if member.recruiter_id == squad.leader.clan_id %}
-		[*][profile={{ member.clan_id }}]{{ member.present().rankName }}[/profile]
-		{% if member.handle %}
-			[url={{ member.handle.fullUrl | replace({'#':'-'}) }}][OW][/url]
-		{% else %}
-			[COLOR="#FF0000"][OW][/COLOR]
-	{% endif %}
-		{% endif %}
-{% endfor %}
-{% for member in squad.members %}
-	{% if member.recruiter_id != squad.leader.clan_id %}
-		[profile={{ member.clan_id }}]{{ member.present().rankName }}[/profile]
-		{% if member.handle %}
-			[url={{ member.handle.fullUrl | replace({'#':'-'}) }}][OW][/url]
-		{% else %}
-			[COLOR="#FF0000"][OW][/COLOR]
-{% endif %}
-		{% endif %}
-{% endfor %}
-[/size]
-
-[/td][/tr]
+		[/tr][tr]
 [/table]
