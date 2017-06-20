@@ -1,37 +1,45 @@
+{% set TBA = "[color=40E0D0]TBA[/color]" %}
+{% set max_platoons = 4 %}
 [table='align:center,width: 800'][tr][td][CENTER][img]http://i.imgur.com/zDsnZfT.png[/img]
 
 
 [size=5][color=#FF0000][b][i][u]Division Leaders[/u][/i][/b][/color][/size]
-[size=4]		[profile=27004][color=#2E2EFE]SSgt 31drew31[/color][/profile] - Commanding Officer
-			[profile=8784][color=#00FF00]Sgt Cryptix[/color][/profile] - Executive Officer
-	[/size]
+[size=4]{% for leader in division.leaders %}
+		[profile={{ leader.clan_id }}][color={{ leader.rank.color }}]{{ leader.present().rankName }}[/color][/profile] - {{ leader.position.name }}
+	{% endfor %}
+[/size]
 
 [size=3][color=#40E0D0]General Sergeants[/color]
-			
-	[/size][/center][/td][/tr][/table]
+	{% for sergeant in division.generalSergeants %}
+		[profile={{ sergeant.cland_id }}][color={{ sergeant.rank.color }}]{{ sergeant.present().rankName }}[/color][/profile]
+	{% else %}
+		
+	{% endfor %}
+[/size][/center][/td][/tr][/table]
 [table='align:center,width: 900']
 
-			[tr][td]
-	    
-[size=5] Talon[/size]
+{% for platoon in division.platoons %}
+	{% if (loop.first) %}
+		[tr][td]
+	{% else %}
+		[/td][td]
+	{% endif %}
+    
+[size=5]{{ diivision.locality.platoon }} {{ platoon.name }}[/size]
             
             [size=3][color=#40E0D0]Platoon Leader[/color][/size]
-            [size=3][profile=38326][color=00FF00] Sgt Lulhz  [/color][/profile][/size]		[COLOR="#FF0000"][OW][/COLOR]			[/td][td]
-	    
-[size=5] Vishkar Corp[/size]
-            
-            [size=3][color=#40E0D0]Platoon Leader[/color][/size]
-            [size=3][profile=27590][color=00FF00] Sgt Frrunnkkiss  [/color][/profile][/size]		[COLOR="#FF0000"][OW][/COLOR]			[/td][td]
-	    
-[size=5] Helix Security[/size]
-            
-            [size=3][color=#40E0D0]Platoon Leader[/color][/size]
-            [size=3][profile=42444][color=00FF00] Sgt Poyzun  [/color][/profile][/size]		[COLOR="#FF0000"][OW][/COLOR]			[/td][td]
-	    
-[size=5] Blackwatch[/size]
-            
-            [size=3][color=#40E0D0]Platoon Leader[/color][/size]
-            [size=3][profile=31564][color=00FF00] Cpl Sythandria  [/color][/profile][/size]		[COLOR="#FF0000"][OW][/COLOR][/td]
+            [size=3][profile={{ platoon.leader.clan_id }}][color=00FF00] {{ platoon.leader.present().rankName }}  [/color][/profile][/size]
+            {%- if platoon.leader.handle -%}
+            	[url={{ platoon.leader.handle.fullURL | replace({'#':'-'}) }}][OW][/url]
+	{% else %}
+		[COLOR="#FF0000"][OW][/COLOR]
+	{%- endif -%}
+{% else %}
+	[color=40E0D0]{{ TBA }}[/color]
+{% endfor %}
+[/td]
 
+{% if loop.index is divisible by (4) %}
 		[/tr][tr]
+{% endif %}
 [/table]
