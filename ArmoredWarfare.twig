@@ -7,7 +7,6 @@
 	[size=4][profile={{ leader.clan_id }}][color={{ leader.rank.color }}]{{ leader.present().rankName }}[/color][/profile] - {{ leader.position.name }}[/size]
 {% endfor %}
 
-
 [center][size=3][color=#40E0D0]General Sergeants[/color][/size][/center]
 {% for sergeant in division.generalSergeants %}
 	[size=3][profile={{ sergeant.clan_id }}][color={{ sergeant.rank.color }}]{{ sergeant.present().rankName }}[/color][/profile][/size]
@@ -24,18 +23,18 @@
 	{% else %}
 		[size=3][color=orange]LEADER TBA[/color][/size]
 	{% endif %}
-
-[table='align:center,class:grid,,width:900'][tr][td]
-{# Squad #}
+	
+	[table='align:center,class:grid,,width:900'][tr][td]
+	{# Squad #}
 	{% for squad in platoon.squads %}
 		[size=3][color=#40E0D0]{{ division.locality.squad }} #{{ loop.index }}[/color][/size]
 		{# iterate squad members #}
 		{% for member in squad.members %}
 			{% if loop.index == 1 %}
 				[size=3][profile={{ squad.leader.clan_id }}][color=#FFA500]{{ squad.leader.present().rankName }}[/color][/profile][/size]
-				
+			
 			{% endif %}
-				[profile={{ member.clan_id }}]{{ member.present().rankName }}[/profile]
+			[profile={{ member.clan_id }}]{{ member.present().rankName }}[/profile]
 		{% endfor %}
 		[/td][td]
 	{% endfor %}
