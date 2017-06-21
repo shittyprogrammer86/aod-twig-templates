@@ -36,32 +36,33 @@
 [/center]
 [/td][/tr][/table]
 
-[table='align:center,width: 600'][tr]
+[table='align:center,width: 750']
 {% for platoon in division.platoons %}
+
 	{% if loop.index == 1 %}
-    	[td=colspan:2][center][size=5][color=ffff00]1st Group[/color][/size]
+    	[tr][td=colspan:4][center][size=5][color=ffff00]1st Group[/color][/size]
         
         [size=3][color=#40E0D0]1st Group Commander[/color]
         [profile=][color=#00FF00]Member 1[/profile][/color][/size][/center][/td][/tr][tr]
     {% elseif loop.index == 3 %}
-    	[td=colspan:2][center][size=5][color=ffff00]2nd Group[/color][/size]
+    	[tr][td=colspan:4][center][size=5][color=ffff00]2nd Group[/color][/size]
         
         [size=3][color=#40E0D0]2nd Group Commander[/color]
         [profile=][color=#00FF00]Member 2[/color][/profile][/size][/center][/td][/tr][tr]
     {% elseif loop.index == 5 %}
-    	[td=colspan:2][center][size=5][color=ffff00]3rd Group[/color][/size]
+    	[tr][td=colspan:4][center][size=5][color=ffff00]3rd Group[/color][/size]
         
         [size=3][color=#40E0D0]3rd Group Commander[/color]
         [profile=][color=#00FF00]Member 2[/color][/profile][/size][/center][/td][/tr][tr]
     {% else %}
     {% endif %}
-[td]
+[tr][td=colspan:4]
 	{% if platoon.logo %}
 		[center][img]{{ platoon.logo }}[/img][/center]
 	{% else %}
 
 	{% endif %}
-	
+	[center]
     {% if platoon.name %}
     	[size=5][color=ffff00]{{ platoon.name }}[/color][/size]
     {% else %}
@@ -79,11 +80,12 @@
     {% else %}
 		[color=#00FF00]TBA[/color]
     {% endif %}
-    [/size]
-
+    [/size][/center]
+[/td][/tr][tr]
 	{# iterate squads #}
 	{% for squad in platoon.squads %}
-		{% if squad.name %}
+		[td]
+        {% if squad.name %}
         	[size=4][color=ffff00]{{ squad.name }}[/color][/size]
         {% else %}
         	[size=4][color=ffff00]Untitled[/color][/size]
@@ -112,13 +114,9 @@
             {% endif %}
 		{% endfor %}
         
+        [/td]
 	{% endfor %}
 
-	{% if loop.index is divisible by(max_platoons) %}
-		[/td][/tr][tr]
-	{% else %}
-		[/td]
-	{% endif %}
-
+[/tr]
 {% endfor %}
-[/tr][/table]
+[/table]
