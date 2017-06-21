@@ -3,41 +3,24 @@
 
 [SIZE=5][COLOR=#FF0000][B][U]Division Leadership[/U][/B][/COLOR][/SIZE]
 [SIZE=4]
-{% for member in division.leaders %}
-	[profile={{ member.clan_id }}][color={{ member.rank.color }}]{{ member.rankName }}[/color][/profile] - {{ leader.position.name }}
-{% else %}
-	TBA
-{% endfor %}
+	{% for leader in division.leaders %}
+		[profile={{ leader.clan_id }}][color={{ leader.rank.color }}]{{ leader.rankName }}[/color][/profile] - {{ leader.position.name }}
+	{% else %}
+		TBA
+	{% endfor %}
+[/size]
 
-<br /><br />
-
-[color=#FF0000]General Sergeants[/color]
-{% if division.generalSergeants %}
+[size=3][color=#FF0000]General Sergeants[/color]
 	{% for sergeant in division.generalSergeants %}
 		[profile={{ sergeant.clan_id }}][color={{ sergeant.rank_color }}]{{ sergeant.rankName }}[/color][/profile]
+	{% else %}
+		No general Sergeants assigned
 	{% endfor %}
-{% else %}
-	No general Sergeants assigned
-{% endif %}
-
 [/SIZE]
 [/CENTER]
 
 [table=align:center]
-{% for platoon in division.platoons %}
-	[tr]
-	[td]
-	{% if platoon.logo %}
-		[img]{{ platoon.logo }}[/img][/center]
-	{% endif %}
-	
-	[center][size=4][color=00FFFF]{{ platoon.name }}[/color][/size][/center]
-	{% if platoon.leader %}
-		[center][profile={{ platoon.leader.clan_id }}][color=white]{{ platoon.leader.present().rankName }}[/color][/profile][/center]
-	{% else %}
-		[color=orange] LEADER TBA [/color]
-	{% endif %}
-	[/td]
-	[/tr]
-{% endfor %}
-[/table]
+{% for platoon in division.platoons %}	
+	{% if (loop.first) %}
+		[tr][td="width50%]
+		{% else %}
