@@ -1,30 +1,28 @@
-[table="width: 800, align: center"][tr][td]
+[table="align: center"][tr][td]
 [center]
  
 {# division banner #}
 [img]http://i66.tinypic.com/10x5zsl.png[/img]
  
-[size=5][color=#00FF00][b][i][u]Division Leadership[/u][/i][/b][/color][/size]
  
-[size=4]
+[size=5][color=#FFD700][b][i]Division Leadership[/i][/b][/color][/size][size=4]
 {# generate leaders #}
     {% for leader in division.leaders %}
         [profile={{ leader.clan_id }}][color={{ leader.rank.color }}]{{ leader.present().rankName }}[/color][/profile] - {{ leader.position.name }}
     {% endfor %}
 [/size]
  
-[size=3][color=#40E0D0]General Sergeants[/color]
+[size=3][color=#FFD700][b][i]General Sergeants[/i][/b][/color]
 {# generate general sergeants #}
     {% for sergeant in division.generalSergeants %}
         [profile={{ sergeant.clan_id }}][color={{ sergeant.rank.color }}]{{ sergeant.present().rankName }}[/color][/profile]
     {% else %}
-        [profile=3419][color=#F09C58]SgtMaj Bluntz[/color][/profile]
-        [profile=3407][color=#F09C58]SgtMaj Liquid_Smoke[/color][/profile]
     {% endfor %}
+            [profile=3419][color=#F09C58]SgtMaj Bluntz[/color][/profile]
+            [profile=3407][color=#F09C58]SgtMaj Liquid_Smoke[/color][/profile]
 [/size]
 [/center]
 [/td][/tr][/table]
- 
 [table="align: center"]
 {# generate platoons #}
 {% for platoon in division.platoons %}
@@ -33,10 +31,9 @@
     {% else %}
         [td]
     {% endif %}
+    [size=3][color=#FFD700][b][i]{{ platoon.name }}[/i][/b][/color]
    
-    [size=3][i]{{ platoon.name }}[/i]
-   
-    [color=orange][b]{{ division.locality.platoonLeader }}[/b][/color]
+    [color="#b1997f"][b]{{ division.locality.platoonLeader }}[/b][/color]
     {% if platoon.leader %}
         [profile={{ platoon.leader.clan_id }}][color=#FF0000]{{ platoon.leader.present().rankName }}[/color][/profile] -
         {%- if platoon.leader.handle -%}
@@ -51,7 +48,7 @@
    
     {# generate squads #}
     {% for squad in platoon.squads %}
-        [size=3][color=cyan][b]{{ division.locality.squadLeader }}[/b][/color]
+        [size=3][color="#EBDEC2"][b]{{ division.locality.squadLeader }}[/b][/color]
         {% if squad.leader %}
             [profile={{ squad.leader.clan_id }}][color=#FF0000]{{ squad.leader.present().rankName }}[/color][/profile] -
             {%- if squad.leader.handle -%}
@@ -65,16 +62,16 @@
         [/size]
        
         {# generate squad members #}
-        [size=1][list=1]
+        [size=1]
         {%- for member in squad.members -%}
-            [*][profile={{ member.clan_id }}]{{ member.present().rankName }}[/profile] -
+            [profile={{ member.clan_id }}]{{ member.present().rankName }}[/profile] -
             {%- if member.handle -%}
                 {{ member.handle.pivot.value }}
             {% else %}
                 ????#????
             {% endif %}
         {% endfor %}
-        [/list][/size]
+        [/size]
     {% endfor %}
     [/td]
 {% endfor %}
