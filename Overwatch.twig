@@ -31,7 +31,7 @@
 	{% if platoon.leader %}
 		[size=3][profile={{ platoon.leader.clan_id }}][color=00FF00] {{ platoon.leader.present().rankName }}  [/color][/profile][/size]
 		{%- if platoon.leader.handle -%}
-			[url={{ platoon.leader.handle.fullURL | replace({'#':'-'}) }}][OW][/url]
+			[url={{ platoon.leader.handle.full_url | replace({'#':'-'}) }}][OW][/url]
 		{% else %} {# no handle #}
 			[COLOR="#FF0000"][OW][/COLOR]
 		{%- endif -%}
@@ -48,7 +48,7 @@
 			[size=3][profile={{ squad.leader.clan_id }}][color=FFA500] {{ squad.leader.present().rankName }}  [/color][/profile][/size]
 			
 			{%- if squad.leader.handle -%}
-				[url={{ squad.leader.handle.fullURL | replace({'#':'-'}) }}][OW][/url]
+				[url={{ squad.leader.handle.full_url | replace({'#':'-'}) }}][OW][/url]
 			{% else %} {# no handle #}
 				[COLOR="#FF0000"][OW][/COLOR]
 			{%- endif -%}
@@ -64,7 +64,7 @@
 		{% for member in squad.members %}
 			[*][profile={{ member.clan_id }}] {{ member.present().rankName }}[/profile]
 			{%- if member.handle -%}
-				[url={{ member.handle.fullURL | replace({'#':'-'}) }}][OW][/url]
+				[url={{ member.handle.full_url | replace({'#':'-'}) }}][OW][/url]
 			{% else %} {# no handle #}
 				[COLOR="#FF0000"][OW][/COLOR]
 			{%- endif -%}

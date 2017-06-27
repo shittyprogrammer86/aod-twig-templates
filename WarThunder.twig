@@ -8,7 +8,7 @@
 {% for leader in division.leaders -%}
 	[profile={{ leader.clan_id }}][color={{ leader.rank.color }}]{{ leader.present().rankName }}[/color][/profile] - {{ leader.position.name }}
 	{%- if leader.handle -%}
-		[url={{ leader.handle.fullUrl }}][color=#00ff00]⟹[/color][/url]
+		[url={{ leader.handle.full_url }}][color=#00ff00]⟹[/color][/url]
 	{% else %}
 		XXX
 	{% endif %}
@@ -23,7 +23,7 @@
 	{% for sergeant in division.generalSergeants %}
 		[profile={{ sergeant.clan_id }}][color={{ sergeant.rank.color }}]{{ sergeant.present().rankName }}[/color][/profile]
 		{%- if sergeant.handle -%}
-			[url={{ sergeant.handle.fullUrl }}][color=#00ff00]⟹[/color][/url]
+			[url={{ sergeant.handle.full_url }}][color=#00ff00]⟹[/color][/url]
 		{% else %}
 			XXX
 		{% endif %}
@@ -77,7 +77,7 @@
 	{% if platoon.leader %}
 		[profile={{ platoon.leader.clan_id }}][color=#00FF00]{{ platoon.leader.present().rankName }}[/color][/profile]
 		{%- if platoon.leader.handle -%}
-			[url={{ platoon.leader.handle.fullUrl }}][color=#00ff00]⟹[/color][/url]
+			[url={{ platoon.leader.handle.full_url }}][color=#00ff00]⟹[/color][/url]
 		{% else %}
 			XXX
 		{% endif %}
@@ -99,7 +99,7 @@
 		{% if squad.leader %}
 			[profile={{ squad.leader.clan_id }}][color=#FFA500]{{ squad.leader.present().rankName }}[/profile][/color]
 			{%- if squad.leader.handle -%}
-				[url={{ squad.leader.handle.fullUrl }}][color=#00ff00]⟹[/color][/url]
+				[url={{ squad.leader.handle.full_url }}][color=#00ff00]⟹[/color][/url]
 			{% else %}
 				XXX
 			{% endif %}
@@ -112,7 +112,7 @@
 		{% for member in squad.members %}
 			[profile={{ member.clan_id }}]{{ member.present().rankName }}[/profile]
 			{%- if member.handle -%}
-				[url={{ member.handle.fullurl }}][color=#00ff00]⟹[/color][/url]
+				[url={{ member.handle.full_url }}][color=#00ff00]⟹[/color][/url]
 			{% else %}
 				XXX
 			{% endif %}

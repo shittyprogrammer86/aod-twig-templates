@@ -44,7 +44,7 @@ dfasdfasdfasdfasdfasdfasdfasdf
 	{% if platoon.leader %}
 		[profile={{ platoon.leader.clan_id }}][color=#00FF00]{{ platoon.leader.present().rankName }}[/color][/profile]
 		{%- if platoon.leader.handle -%}
-			[url={{ platoon.leader.handle.fullUrl }}] [BC][/url]
+			[url={{ platoon.leader.handle.full_url }}] [BC][/url]
 		{% else %}
 			XX
 		{%- endif -%}
@@ -59,7 +59,7 @@ dfasdfasdfasdfasdfasdfasdfasdf
 		{% if squad.leader %}
 			[profile={{ squad.leader.clan_id }}][color=orange]{{ squad.leader.present().rankName }}[/color][/profile]
 			{%- if squad.leader.handle -%}
-				[url={{ squad.leader.handle.fullUrl }}] [BC][/url]
+				[url={{ squad.leader.handle.full_url }}] [BC][/url]
 			{% else -%}
 				XXX
 			{%- endif -%}
@@ -73,7 +73,7 @@ dfasdfasdfasdfasdfasdfasdfasdf
 		{%- for member in squad.members -%}
 			[*][profile={{ member.clan_id }}]{{ member.present().rankName }}[/profile] -
 			{%- if member.handle -%}
-				[url={{ member.handle.fullUrl }}][BC][/url]
+				[url={{ member.handle.full_url }}][BC][/url]
 			{% else %}
 				XXX
 			{% endif %}
