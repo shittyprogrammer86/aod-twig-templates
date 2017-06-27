@@ -1,7 +1,6 @@
 {# some variables #}
-dfasdfasdfasdfasdfasdfasdfasdf
-
 {% set TBA = "[color=orange]TBA[/color]" %}
+
 [table="width: 800, align: center"][tr][td]
 [center]
 
@@ -94,7 +93,11 @@ dfasdfasdfasdfasdfasdfasdfasdf
 	[size=3]Leaves of Absence[/size]
 	
 	{% for member in division.leave %}
-		{{ member.present().rankName }} - {{ member.leave.date }} - {{ member.leave.reason }}
+		{% if member.leave.expired %}
+			{{ member.present().rankName }} - [color=red]{{ member.leave.date }} (EXPIRED)[/color] - {{ member.leave.reason }}
+		{% else %}
+			{{ member.present().rankName }} - {{ member.leave.date }} - {{ member.leave.reason }}
+		{% endif %}
 	{% endfor %}
 	
 	[/center]
