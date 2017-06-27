@@ -32,7 +32,7 @@
 	{% endif %}
 	[size=3][color=#FFD700][b][i]{{ platoon.name }}[/i][/b][/color]
 	
-	[color="#b1997f"][b]{{ division.locality.platoonLeader }}[/b][/color]
+	[color="#b1997f"][b]{{ division.locality.platoon_leader }}[/b][/color]
 	{% if platoon.leader %}
 		[profile={{ platoon.leader.clan_id }}][color=#FF0000]{{ platoon.leader.present().rankName }}[/color][/profile] -
 		{%- if platoon.leader.handle -%}
@@ -47,7 +47,7 @@
 	
 	{# generate squads #}
 	{% for squad in platoon.squads %}
-		[size=3][color="#EBDEC2"][b]{{ division.locality.squadLeader }}[/b][/color]
+		[size=3][color="#EBDEC2"][b]{{ division.locality.squad_leader }}[/b][/color]
 		{% if squad.leader %}
 			[profile={{ squad.leader.clan_id }}][color=#FF0000]{{ squad.leader.present().rankName }}[/color][/profile] -
 			{%- if squad.leader.handle -%}
