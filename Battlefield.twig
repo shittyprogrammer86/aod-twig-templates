@@ -87,3 +87,15 @@ dfasdfasdfasdfasdfasdfasdfasdf
 	{% endif %}
 {% endfor %}
 [/tr][/table]
+
+{% if (division.leave) %}
+	[center]
+	
+	[size=3]Leaves of Absence[/size]
+	
+	{% for member in division.leave %}
+		{{ member.present().rankName }} - {{ member.leave.date }} - {{ member.leave.reason }}
+	{% endfor %}
+	
+	[/center]
+{% endif %}
