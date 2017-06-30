@@ -95,7 +95,7 @@
 			[size=4][color=ffff00]Untitled[/color][/size]
 		{% endif %}
 		
-		[size=3][color=#40E0D0]{{ ordSuffix(loop.index) }} Squadron Commander[/color]
+		[size=3][color=#40E0D0]{{ ordSuffix(loop.index) }} Squadron Leader[/color]
 		{% if squad.leader %}
 			[profile={{ squad.leader.clan_id }}][color=#FFA500]{{ squad.leader.present().rankName }}[/profile][/color]
 			{%- if squad.leader.handle -%}
