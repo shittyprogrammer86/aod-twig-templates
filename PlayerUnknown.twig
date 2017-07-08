@@ -19,8 +19,8 @@
 [/SIZE]
 [/center]
 
-[table="width: 800, align: center"]
 {% for platoon in division.platoons %}	
+[table="width: 800, align: center"]
 	[tr][td]
 	
 	[center][size=4][color=00FFFF]{{ platoon.name }}[/color][/center]
@@ -32,7 +32,9 @@
     	[/size]
 	
 	[/td][/tr]
-    
+[/table]
+   
+[table="width: 800, align: center"]
     {% for squad in platoon.squads %}
     [tr][td]
     	[size=3][color=00FFFF]Squad {{ loop.index }}[/color][/size]
@@ -52,4 +54,4 @@
 	[/tr]
 
 {% endfor %} 
-[/tr][/table]
+[/table]
