@@ -52,6 +52,9 @@
  		[/list][/size] 
 	[/td]
 	{% endfor %} 
+	{% if loop.index is divisible by (3) %}
+	[/tr][tr]
+	{% endif %}
 	[/tr]
 	
 [/table]
