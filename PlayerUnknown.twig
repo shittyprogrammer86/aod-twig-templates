@@ -35,8 +35,9 @@
 [/table]
    
 [table="width: 800, align: center"]
+[tr]
     {% for squad in platoon.squads %}
-    [tr][td]
+    [td]
     	[size=3][color=00FFFF]Squad {{ loop.index }}[/color][/size]
     	{% if squad.leader %}
         	[size=3][profile={{ squad.leader.clan_id }}][color=white]{{ squad.leader.present().rankName }}[/color][/profile] [url={{ squad.leader.handle.fullUrl }}][color=00FFFF][Steam][/color][/url] 
@@ -49,8 +50,9 @@
  			[*][profile={{ member.clan_id }}]{{ member.present().rankName }}[/profile] - [url={{ member.handle.fullUrl }}][color=00FFFF][Steam][/color][/url]  
  		{% endfor %} 
  		[/list][/size] 
-	[/td]	[/tr]
+	[/td]
 	{% endfor %} 
+	[/tr]
 	
 [/table]
 {% endfor %} 
