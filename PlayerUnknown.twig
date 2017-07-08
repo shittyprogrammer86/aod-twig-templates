@@ -25,7 +25,7 @@
 	
 	[center][size=4][color=00FFFF]{{ platoon.name }}[/color][/center]
 	{% if platoon.leader %}
-    	[center][profile={{ platoon.leader.clan_id }}][color=#00FF00]{{ platoon.leader.present().rankName }}[/color][/profile][/center][url={{ platoon.leader.handle.fullUrl }}][color=00FFFF][Steam][/color][/url]
+    	[center][profile={{ platoon.leader.clan_id }}][color=#00FF00]{{ platoon.leader.present().rankName }}[/color][/profile] [url={{ platoon.leader.handle.fullUrl }}][color=00FFFF][Steam][/color][/url][/center]
 	{% else %}
     	TBA
    	{% endif %}
