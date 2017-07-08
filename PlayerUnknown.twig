@@ -20,7 +20,7 @@
 [/center]
 
 {% for platoon in division.platoons %}	
-[table="width: 800, align: center"]
+[table="width: 1200, align: center"]
 	[tr][td]
 	
 	[center][size=4][color=00FFFF]{{ platoon.name }}[/color][/center]
@@ -34,7 +34,7 @@
 	[/td][/tr]
 [/table]
    
-[table="width: 800, align: center"]
+[table="width: 1200, align: center"]
 [tr]
     {% for squad in platoon.squads %}
     [td]
@@ -52,9 +52,6 @@
  		[/list][/size] 
 	[/td]
 	{% endfor %} 
-	{% if loop.index is divisible by (3) %}
-	[/tr][tr]
-	{% endif %}
 	[/tr]
 	
 [/table]
