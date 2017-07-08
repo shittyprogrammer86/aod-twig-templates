@@ -4,7 +4,7 @@
 [SIZE=5][COLOR=#00FFFF][B][U]Division Leadership[/U][/B][/COLOR][/SIZE]
 [SIZE=4]
 	{% for leader in division.leaders %}
-		[profile={{ leader.clan_id }}][color={{ leader.rank.color }}]{{ leader.present().rankName }}[/color][/profile] - {{ leader.position.name }}
+		[profile={{ leader.clan_id }}][color={{ leader.rank.color }}]{{ leader.present().rankName }}[/color][/profile] - {{ leader.position.name }} [url={{ platoon.leader.handle.fullUrl }}][color=00FFFF][Steam][/color][/url]
 	{% else %}
 		TBA
 	{% endfor %}
