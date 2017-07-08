@@ -21,20 +21,19 @@
 
 [table="width: 800, align: center"]
 {% for platoon in division.platoons %}	
-	{%- if (loop.first) -%}
-		[tr][td="width50%"]
-	{% else %}
-		[td="width:50%"]
-	{%- endif -%}
+	[tr][td]
 	
 	[center][size=4][color=00FFFF]{{ platoon.name }}[/color][/center]
 	{% if platoon.leader %}
     	[center][profile={{ platoon.leader.clan_id }}][color=#00FF00]{{ platoon.leader.present().rankName }}[/color][/profile][/center][url={{ platoon.leader.handle.fullUrl }}][color=00FFFF][Steam][/color][/url]
 	{% else %}
     	TBA
-    {% endif %}
-    [/size]
+   	{% endif %}
+    	[/size]
+	
+	[/td][/tr]
     
+    [tr][td]
     {% for squad in platoon.squads %}
     	[size=3][color=00FFFF]Squad {{ loop.index }}[/color][/size]
     	{% if squad.leader %}
@@ -49,10 +48,7 @@
  		{% endfor %} 
  		[/list][/size] 
 	{% endfor %} 
-	[/td] 
-	 
-	{% if loop.index is divisible by (3) %} 
-		[/tr][tr] 
-	{% endif %} 
+	[/td][tr]
+
 {% endfor %} 
-[/tr][/table]
+[/table]
