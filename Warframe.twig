@@ -1,1 +1,118 @@
 
+{# table for header images and division leadership #}
+[table='align:center,width: 850']
+    [tr]
+        [td]
+            [center]
+                {# header images #}
+                [img]http://i.imgur.com/SmLNYbp.gif[/img]
+                [img]http://i.imgur.com/Xiox0vy.png[/img]
+                [size=5][color=#00FF00][b][i][u]Division Leadership[/u][/i][/b][/color][/size]
+                [size=4]
+                    {# division leadership loop #}
+                    {% for leader in division.leaders %}
+                        [profile={{ leader.clan_id }}][color={{ leader.rank.color }}]{{ leader.present().rankName }}[/color][/profile] - {{ leader.position.name }}
+                    {% endfor %}
+                [/size]
+                [size=3]
+                    [color=#40E0D0]General Sergeants[/color]
+                    {% for sergeant in division.generalSergeants %}
+                        [profile={{ sergeant.clan_id }}][color={{ sergeant.rank.color }}]{{ sergeant.present().rankName }}[/color][/profile]
+                    {% else %}
+                        No general sergeants assigned
+                    {% endfor %}
+                [/size]
+            [/center]
+        [/td]
+    [/tr]
+[/table]
+[table='align:center,width: 900']
+	[tr]
+	{% for platoon in division.platoons %}
+    	[td]
+        	[size=3][color=#40E0D0]{{ division.locality.platoon_leader }}[/color][/size]
+        	[profile={{ platoon.leader.clan_id }}]{{ platoon.leader.present().rankName }}[/profile]
+       	 	[size=1]IGN: {{ platoon.leader.handle.pivot.value }}[/size]
+            
+            {% for squad in platoon.squads %}
+        		[size=3][color=#40E0D0]{{ division.locality.squad_leader }}[/color][/size]
+       		 	[profile={{ squad.leader.clan_id }}][color=#FFA500]{{ squad.leader.present().rankName }}[/color][/profile]
+        		[size=1]IGN: {{ squad.leader.handle.pivot.value }}[/size]
+                
+                {#[list=1]
+                {% for member in squad.members %}
+                	{% if member.recruiter_id == squad.leader.clan_id %}
+                    	[*][profile={{ member.clan_id }}]{{ member.present().rankName }}[/profile]
+                    	IGN: {{ member.handle.pivot.value }}
+                    {% endif %}
+                {% endfor %}
+                [/list]#}
+                {% for member in squad.members %}
+                	{#{{ member.clan_id }}#}
+                	{#{{ member.recruiter_id }}#}
+                	{#{% if member.recruiter_id != squad.leader.clan_id %}#}
+                    	[profile={{ member.clan_id }}]{{ member.present().rankName }}[/profile]
+                    	IGN: {{ member.handle.pivot.value }}
+                    {#{% endif %}#}
+                    
+                {% endfor %}
+        	{% endfor %}
+        [/td]
+	{% endfor %}
+    [/tr]
+[/table]
+{# part time members #}
+{% if division.partTimeMembers.count() > 0 %}
+[table='align:center,width: 850']
+    [tr]
+        [td]
+            [center][size=3][color=#40E0D0][b]Part Time Members[/b][/color][/size][/center]
+        [/td]
+    [/tr]
+[/table]
+[table='align:center,width: 850']
+    [tr]
+    {% for partTimer in division.partTimeMembers %}
+      [td]
+        [profile={{ partTimer.clan_id }}]{{ partTimer.present().rankName }}[/profile]
+        IGN: {{ partTimer.handle.pivot.value }}
+      [/td]
+        {% if loop.index is divisible by(4) %}
+   	[/tr]
+    [tr]
+        {% endif %}
+    {% endfor %}
+    [/tr]
+[/table]
+{% endif %}
+{# members on loa #}
+{% if division.leave.count() > 0 %}
+[table='align:center,width: 850']
+	[tr]
+		[td]
+			[center][size=3][color=#40E0D0][b]Leaves of Absence[/b][/color][/size][/center]
+		[/td]
+	[/tr]
+[/table]
+[table='align:center,width: 850']
+  {% for member in division.leave %}
+    [tr]
+      [td]
+      	[profile={{ member.clan_id }}]{{ member.present().rankName }}[/profile]
+      [/td]
+      {% if member.leave.expired %}
+        [td]
+        	[color=red]{{ member.leave.date }} (EXPIRED)[/color]
+        [/td]
+      {% else %}
+        [td]
+        	{{ member.leave.date }}
+        [/td]
+      {% endif %}
+      [td]
+      	{{ member.leave.reason }}
+      [/td]
+    [/tr]
+  {% endfor %}
+[/table]
+{% endif %}
