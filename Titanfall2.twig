@@ -31,23 +31,23 @@
 	{% else %}
 		[color=orange]TBA[/color]
 	{% endif %}
-    [/size]
-
+	[/size]
+	
 	{# iterate squads #}
 	{% for squad in platoon.squads %}
 		[size=3][color=#40E0D0]Squad Leader[/color]
-			{% if squad.leader %}
-				[color=#FFA500]{{ squad.leader.present().rankName }}[/color]
-			{% else %}
-				[color=orange]TBA[/color]
-			{% endif %}
-        [/size]
+		{% if squad.leader %}
+			[color=#FFA500]{{ squad.leader.present().rankName }}[/color]
+		{% else %}
+			[color=orange]TBA[/color]
+		{% endif %}
+		[/size]
 		{# iterate squad members #}
-        [size=1]
+		[size=1]
 		{% for member in squad.members %}
 			[profile={{ member.clan_id }}]{{ member.present().rankName }}[/profile]
 		{% endfor %}
-        [/size]
+		[/size]
 	{% endfor %}
 	[/td]
 {% endfor %}
