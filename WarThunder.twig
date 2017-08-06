@@ -1,5 +1,5 @@
 {% set max_platoons = 2 %}
-[table='align:center,width: 800'][tr][td][center][img]http://i.imgur.com/QZW3kW9.png[/img]
+[table='align:left,width: 700'][tr][td][center][img]http://i.imgur.com/QZW3kW9.png[/img]
 
 [size=5][color=#FF0000][b][i][u]Division Leaders[/u][/i][/b][/color][/size]
 
@@ -8,7 +8,7 @@
 {% for leader in division.leaders -%}
 	[profile={{ leader.clan_id }}][color={{ leader.rank.color }}]{{ leader.present().rankName }}[/color][/profile] - {{ leader.position.name }}
 	{%- if leader.handle -%}
-		[url={{ leader.handle.full_url }}][color=#00ff00]⟹[/color][/url]
+		[url={{ leader.handle.full_Url }}][color=#00ff00]⟹[/color][/url]
 	{% else %}
 		XXX
 	{% endif %}
@@ -23,7 +23,7 @@
 	{% for sergeant in division.generalSergeants %}
 		[profile={{ sergeant.clan_id }}][color={{ sergeant.rank.color }}]{{ sergeant.present().rankName }}[/color][/profile]
 		{%- if sergeant.handle -%}
-			[url={{ sergeant.handle.full_url }}][color=#00ff00]⟹[/color][/url]
+			[url={{ sergeant.handle.full_Url }}][color=#00ff00]⟹[/color][/url]
 		{% else %}
 			XXX
 		{% endif %}
@@ -35,9 +35,9 @@
 [/size]
 [/center]
 [/td][/tr][/table]
-[table='align:center,width: 950']
+
 {% for platoon in division.platoons %}
-	
+[table='align:left,width: 800']	
 	
 	{% if loop.index == 1 %}
 		[tr][td=colspan:4][center][size=6][color=red]1st Group[/color][/size]
@@ -77,16 +77,17 @@
 	{% if platoon.leader %}
 		[profile={{ platoon.leader.clan_id }}][color=#00FF00]{{ platoon.leader.present().rankName }}[/color][/profile]
 		{%- if platoon.leader.handle -%}
-			[url={{ platoon.leader.handle.full_url }}][color=#00ff00]⟹[/color][/url]
+			[url={{ platoon.leader.handle.full_Url }}][color=#00ff00]⟹[/color][/url]
 		{% else %}
 			XXX
 		{% endif %}
 	{% else %}
 		[color=#00FF00]TBA[/color]
 	{% endif %}
-	[/size][/center]
-	[/td][/tr][tr]
+	[/center][/size]
+	[/td][[/tr][/table]
 	{# iterate squads #}
+    [table='align:center,width: 850'][tr]
 	{% for squad in platoon.squads %}
 		[td]
 		{% if squad.name %}
@@ -99,7 +100,7 @@
 		{% if squad.leader %}
 			[profile={{ squad.leader.clan_id }}][color=#FFA500]{{ squad.leader.present().rankName }}[/profile][/color]
 			{%- if squad.leader.handle -%}
-				[url={{ squad.leader.handle.full_url }}][color=#00ff00]⟹[/color][/url]
+				[url={{ squad.leader.handle.full_Url }}][color=#00ff00]⟹[/color][/url]
 			{% else %}
 				XXX
 			{% endif %}
@@ -112,7 +113,7 @@
 		{% for member in squad.members %}
 			[profile={{ member.clan_id }}]{{ member.present().rankName }}[/profile]
 			{%- if member.handle -%}
-				[url={{ member.handle.full_url }}][color=#00ff00]⟹[/color][/url]
+				[url={{ member.handle.full_Url }}][color=#00ff00]⟹[/color][/url]
 			{% else %}
 				XXX
 			{% endif %}
@@ -121,6 +122,39 @@
 		[/td]
 	{% endfor %}
 	
-	[/tr]
+	[/tr][/table]
 {% endfor %}
-[/table]
+
+
+[table='align:center,width: 800'][tr][td]
+[center][size=3][color=#40E0D0][b]Part Time Members[/b][/color][/size][/center][/td][/tr][/table]
+
+{% set max_PartTime = 3 %}
+[table='align:center,width: 800'][tr][td]
+{%- for member in division.partTimeMembers %}
+	[profile={{ member.clan_id }}]AOD_{{ member.name }}[/profile]
+    {%- if member.handle -%}
+    	[url={{ member.handle.full_Url }}][color=#00ff00]⟹[/color][/url]
+    {% else %}
+      	XXX
+    {% endif %}    
+    {%- if loop.index == max_PartTime %}
+    	[/td][td]
+    {% endif %}
+{% endfor %}
+[/td][/tr][/table]
+
+{% if division.leave %}
+[table='align:center,width: 800'][tr][td]
+[center][size=3][color=#40E0D0][b]Leave of Absences[/b][/color][/size][/center][/td][/tr][/table]
+
+	[center]
+	{% for member in division.leave %}
+		{% if member.leave.expired %}
+			{{ member.present().rankName }} - [color=red]{{ member.leave.date }} (EXPIRED)[/color] - {{ member.leave.reason }}
+		{% else %}
+			{{ member.present().rankName }} - {{ member.leave.date }} - {{ member.leave.reason }}
+		{% endif %}
+	{% endfor %}
+	[/center]
+{% endif %}
