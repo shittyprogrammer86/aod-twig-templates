@@ -1,4 +1,4 @@
-[table='align:center,width: 800'][tr][td][center][img]https://thumbs.gfycat.com/ShoddyEthicalElephantseal-size_restricted.gif[/img]
+[table='align:center,width: 800'][tr][td][center][img]http://i.imgur.com/R7B0G25.jpg[/img]
 
 [size=5][color=#FF0000][b][i][u]Division Leaders[/u][/i][/b][/color]
 
@@ -15,4 +15,45 @@
 	{% endfor %}
 {% endif %}
 [/size]
+
+[size=3][color="#40E0D0"]Corporals[/color]
+
+{% for platoon in division.platoons %}
+	{%- if platoon.leader -%}
+    	{%- if platoon.leader.rank.name == 'Corporal' %}
+			[profile={{ platoon.leader.clan_id }}]{{ platoon.leader.rank.abbreviation }}_{{ platoon.leader.name }}[/profile]
+		{% endif %}
+	{% endif -%}	
+    {%- for squad in platoon.squads %}
+		{% if squad.leader.rank.name == 'Corporal' %}
+        	[profile={{ squad.leader.clan_id }}]{{ squad.leader.rank.abbreviation }}_{{ squad.leader.name }}[/profile]
+        {% endif -%}     
+        {%- for member in squad.members %}
+        	{% if member.rank.name == 'Corporal' %}
+        		[profile={{ member.handle.clan_id }}]{{ member.rank.abbreviation }}_{{ member.name }}[/profile]
+        	{% endif -%}
+        {% endfor -%}
+	{% endfor -%}
+{%- endfor -%}[/size]
+
+[size=3][color="#40E0D0"] Lance Corporals[/color]
+
+{% for platoon in division.platoons %}
+	{%- if platoon.leader -%}
+    	{%- if platoon.leader.rank.name == 'Lance Corporal' %}
+			[profile={{ platoon.leader.clan_id }}]{{ platoon.leader.rank.abbreviation }}_{{ platoon.leader.name }}[/profile]
+		{% endif %}
+	{% endif -%}	
+    {%- for squad in platoon.squads %}
+		{% if squad.leader.rank.name == 'Lance Corporal' %}
+        	[profile={{ squad.leader.clan_id }}]{{ squad.leader.rank.abbreviation }}_{{ squad.leader.name }}[/profile]
+        {% endif -%}     
+        {%- for member in squad.members %}
+        	{% if member.rank.name == 'Lance Corporal' %}
+        		[profile={{ member.handle.clan_id }}]{{ member.rank.abbreviation }}_{{ member.name }}[/profile]
+        	{% endif -%}
+        {% endfor -%}
+	{% endfor -%}
+{%- endfor -%}[/size]
+
 [/center][/td][/tr][/table]
