@@ -1,14 +1,13 @@
-{# variables #}
+{# some variables #}
+
+
 {% set TBA = "[color=orange]TBA[/color]" %}
-
 [table="width: 800, align: center"][tr][td]
-[center]
 
-{# battlefield header #}
-[img]http://i.imgur.com/Xb2X4je.png[/img]
+{# division graphic header #}
+[img]http://i.imgur.com/IAdO7MY.png[/img]
 
-[size=5][color=#00FF00][b][i][u]Division Leadership[/u][/i][/b][/color][/size]
-
+[CENTER][SIZE=5][COLOR=#FF0000][B][U]Division Leaders[/U][/B][/COLOR][/SIZE]
 [size=4]
 {# iterate leaders #}
 	{% for leader in division.leaders %}
@@ -16,15 +15,15 @@
 	{% endfor %}
 [/size]
 
-[size=3][color=#40E0D0]General Sergeants[/color]
+[size=3][color=#FF8C00][b]General Sergeants[/b][/color]
 {# iterate general sergeants #}
 	{% for sergeant in division.generalSergeants %}
 		[profile={{ sergeant.clan_id }}][color={{ sergeant.rank.color }}]{{ sergeant.present().rankName }}[/color][/profile]
 	{% else %}
-		No general sergeants assigned
+		No general Sergeants assigned
 	{% endfor %}
-[/size]
-[/center]
+
+[/center][/size]
 [/td][/tr][/table]
 
 [table="width: 800, align: center"]
@@ -35,18 +34,18 @@
 	{% else %}
 		[td="width:33%"]
 	{% endif %}
-	
+	{# does this platoon have a logo? #}
+	{% if platoon.logo %}
+		[img]{{ platoon.logo }}[/img]
+	{% else %}
+		No platoon logo
+	{% endif %}
 	[color=red][size=5]{{ division.locality.platoon }} #{{ loop.index }}[/size][/color]
 	[size=3][i]{{ platoon.name }}[/i]
 	
 	[color=cyan]{{ division.locality.platoon_leader }}[/color]
 	{% if platoon.leader %}
 		[profile={{ platoon.leader.clan_id }}][color=#00FF00]{{ platoon.leader.present().rankName }}[/color][/profile]
-		{%- if platoon.leader.handle -%}
-			[url={{ platoon.leader.handle.full_url }}] [BC][/url]
-		{% else %}
-			XX
-		{%- endif -%}
 	{% else %}
 		{{ TBA }}
 	{% endif %}
@@ -57,27 +56,17 @@
 		[size=3][color=cyan]{{ division.locality.squad_leader }}[/color]
 		{% if squad.leader %}
 			[profile={{ squad.leader.clan_id }}][color=orange]{{ squad.leader.present().rankName }}[/color][/profile]
-			{%- if squad.leader.handle -%}
-				[url={{ squad.leader.handle.full_url }}] [BC][/url]
-			{% else -%}
-				XXX
-			{%- endif -%}
 		{% else %}
 			{{ TBA }}
 		{% endif %}
 		[/size]
 		
 		{# iterate squad members #}
-		[size=1][list=1]
+		[size=1]
 		{%- for member in squad.members -%}
-			[*][profile={{ member.clan_id }}]{{ member.present().rankName }}[/profile] -
-			{%- if member.handle -%}
-				[url={{ member.handle.full_url }}][BC][/url]
-			{% else %}
-				XXX
-			{% endif %}
+			[profile={{ member.clan_id }}]{{ member.present().rankName }}[/profile]
 		{% endfor %}
-		[/list][/size]
+		[/size]
 	{% endfor %}
 	[/td]
 	
@@ -87,10 +76,10 @@
 {% endfor %}
 [/tr][/table]
 
+
+{# iterate leaves of absence #}
 {% if (division.leave) %}
-	[center]
-	
-	[size=3]Leaves of Absence[/size]
+	[center][size=3][color=#FF8C00][b]Leaves of Absence[/b][/color][/size]
 	
 	{% for member in division.leave %}
 		{% if member.leave.expired %}
@@ -102,3 +91,11 @@
 	
 	[/center]
 {% endif %}
+
+{# iterate part time members #}
+[center][size=3][color=#FF8C00][b]Part Time Members[/b][/color][/size]
+		[size=1]
+		{%- for member in division.partTimeMembers -%}
+			[profile={{ member.clan_id }}]{{ member.present().rankName }}[/profile]
+		{% endfor %}
+		[/size][/center]
