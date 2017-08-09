@@ -62,11 +62,11 @@
 		[/size]
 		
 		{# iterate squad members #}
-		[size=1]
+		[size=1][list=1]
 		{%- for member in squad.members -%}
-			[profile={{ member.clan_id }}]{{ member.present().rankName }}[/profile]
+			[*][profile={{ member.clan_id }}]{{ member.present().rankName }}[/profile]
 		{% endfor %}
-		[/size]
+		[/list][/size]
 	{% endfor %}
 	[/td]
 	
@@ -76,11 +76,23 @@
 {% endfor %}
 [/tr][/table]
 
-[center][size=3][color=#FF8C00][b]Leaves of Absence[/b][/color][/size]
+
 {# iterate leaves of absence #}
-	{% for sergeant in division.generalSergeants %}
-		[profile={{ sergeant.clan_id }}][color={{ sergeant.rank.color }}]{{ sergeant.present().rankName }}[/color][/profile]
-	{% else %}
-		LOA Information Unavailable at this time. Check back soon.
+[center][size=3][color=#FF8C00][b]Leaves of Absence[/b][/color][/size]
+	[color=#FFFFFF][size=1]{% for member in division.leave %}
+		{% if member.leave.expired %}
+			{{ member.present().rankName }} - [color=red]{{ member.leave.date }} (EXPIRED)[/color] - {{ member.leave.reason }}
+		{% else %}
+			{{ member.present().rankName }} - {{ member.leave.date }} - {{ member.leave.reason }}
+		{% endif %}
 	{% endfor %}
-[/center]
+	[/size][/color]
+	[/center]
+    
+{# iterate part time members #}
+[center][size=3][color=#FF8C00][b]Part Time Members[/b][/color][/size]
+		[size=1]
+		{%- for member in division.partTimeMembers -%}
+			[profile={{ member.clan_id }}]{{ member.present().rankName }}[/profile]
+		{% endfor %}
+		[/size][/center]
